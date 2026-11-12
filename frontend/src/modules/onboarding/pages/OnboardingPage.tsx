@@ -152,17 +152,10 @@ export const OnboardingPage: React.FC = () => {
       if (copy[id]) {
         delete copy[id];
       } else {
-        copy[id] = 3; // Default proficiency 3
+        copy[id] = 3; // Default proficiency 3 for backend compatibility
       }
       return copy;
     });
-  };
-
-  const updateProficiency = (id: string, level: number) => {
-    setSelectedInterests((prev) => ({
-      ...prev,
-      [id]: level,
-    }));
   };
 
   const toggleAvailabilitySlot = (day: number, slot: string) => {
@@ -249,14 +242,109 @@ export const OnboardingPage: React.FC = () => {
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const timeSlots = ['MORNING', 'AFTERNOON', 'EVENING', 'NIGHT'];
 
-  // Group interests by category
-  const groupedInterests: Record<string, InterestItem[]> = {};
-  interestsList?.forEach((item) => {
-    if (!groupedInterests[item.category]) {
-      groupedInterests[item.category] = [];
+  // Vibe & Social Intent Categories
+  const VIBE_CATEGORIES = [
+    {
+      title: 'Casual Hangouts & Foodies',
+      icon: '☕',
+      description: 'Cafés, street food trails, baking, and board games',
+      slugs: ['cafe-hopping', 'street-food-trails', 'baking-cooking', 'board-games-chess'],
+    },
+    {
+      title: 'Active & Sports',
+      icon: '⚡',
+      description: 'Football, cricket, badminton, running, and yoga',
+      slugs: ['football', 'cricket', 'badminton', 'running-marathon', 'yoga-wellness'],
+    },
+    {
+      title: 'Adventure & Outdoors',
+      icon: '🎒',
+      description: 'Mountain treks, road trips, camping, and photography walks',
+      slugs: ['weekend-trips', 'trekking-hiking', 'photography-walks', 'camping-stargazing'],
+    },
+    {
+      title: 'Arts, Culture & Heritage',
+      icon: '🎭',
+      description: 'Festivals, live music, theater, books, art, and cinema',
+      slugs: [
+        'durga-puja-heritage',
+        'cultural-festivals',
+        'live-concerts',
+        'theater-drama',
+        'book-clubs',
+        'art-exhibitions',
+        'film-appreciation',
+      ],
+    },
+    {
+      title: 'Tech & Gaming',
+      icon: '💻',
+      description: 'Hackathons, tech meetups, and PC/console gaming',
+      slugs: ['hackathons-tech', 'pc-console-gaming'],
+    },
+  ];
+
+  const INTEREST_EMOJIS: Record<string, string> = {
+    'durga-puja-heritage': '🪔',
+    'live-concerts': '🎸',
+    'cultural-festivals': '🎉',
+    'theater-drama': '🎭',
+    'football': '⚽',
+    'cricket': '🏏',
+    'badminton': '🏸',
+    'running-marathon': '🏃',
+    'yoga-wellness': '🧘',
+    'weekend-trips': '🚗',
+    'trekking-hiking': '🥾',
+    'photography-walks': '📷',
+    'camping-stargazing': '⛺',
+    'cafe-hopping': '☕',
+    'street-food-trails': '🍲',
+    'baking-cooking': '🍳',
+    'board-games-chess': '🎲',
+    'pc-console-gaming': '🎮',
+    'hackathons-tech': '💻',
+    'book-clubs': '📚',
+    'art-exhibitions': '🎨',
+    'film-appreciation': '🎬',
+  };
+
+  // Group interests into Vibe & Social Intent categories
+  const categorizedInterests: {
+    title: string;
+    icon: string;
+    description: string;
+    items: InterestItem[];
+  }[] = [];
+
+  if (interestsList) {
+    const placedIds = new Set<string>();
+
+    VIBE_CATEGORIES.forEach((vibe) => {
+      const items = interestsList.filter(
+        (item) => vibe.slugs.includes(item.slug) && !placedIds.has(item.id)
+      );
+      items.forEach((it) => placedIds.add(it.id));
+      if (items.length > 0) {
+        categorizedInterests.push({
+          title: vibe.title,
+          icon: vibe.icon,
+          description: vibe.description,
+          items,
+        });
+      }
+    });
+
+    const remaining = interestsList.filter((it) => !placedIds.has(it.id));
+    if (remaining.length > 0) {
+      categorizedInterests.push({
+        title: 'Other Activities',
+        icon: '🌟',
+        description: 'More community interests',
+        items: remaining,
+      });
     }
-    groupedInterests[item.category].push(item);
-  });
+  }
 
   return (
     <div className="max-w-2xl mx-auto py-6">
@@ -465,85 +553,89 @@ export const OnboardingPage: React.FC = () => {
           </div>
         )}
 
-        {/* STEP 3: Interest Graph & Proficiencies */}
+        {/* STEP 3: Interest Graph & Social Vibes */}
         {step === 3 && (
           <div className="space-y-5">
-            <div className="border-b border-slate-100 pb-3">
-              <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-brand-600" />
-                Select Your Interests
-              </h2>
-              <p className="text-xs text-slate-500 mt-1">
-                Choose activities and hobbies you love. Adjust your passion/proficiency level (1 to 5).
-              </p>
+            <div className="border-b border-slate-100 pb-3 flex items-start justify-between">
+              <div>
+                <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-brand-600" />
+                  Select Your Interests
+                </h2>
+                <p className="text-xs text-slate-500 mt-1">
+                  Choose the activities and social vibes you love to connect with like-minded companions.
+                </p>
+              </div>
+              <span
+                className={`text-xs font-semibold px-2.5 py-1 rounded-full shrink-0 transition ${
+                  Object.keys(selectedInterests).length > 0
+                    ? 'bg-emerald-100 text-emerald-800'
+                    : 'bg-slate-100 text-slate-500'
+                }`}
+              >
+                {Object.keys(selectedInterests).length > 0
+                  ? `${Object.keys(selectedInterests).length} selected`
+                  : 'Select at least 1'}
+              </span>
             </div>
 
             {isInterestsLoading ? (
               <div className="flex justify-center py-8">
                 <Loader2 className="h-6 w-6 animate-spin text-brand-600" />
               </div>
-            ) : Object.keys(groupedInterests).length === 0 ? (
+            ) : categorizedInterests.length === 0 ? (
               <div className="rounded-xl border border-dashed border-slate-200 p-6 text-center text-xs text-slate-500">
                 No system interests seeded yet. You can still continue to the next step.
               </div>
             ) : (
-              <div className="space-y-5 max-h-96 overflow-y-auto pr-2">
-                {Object.entries(groupedInterests).map(([catName, items]) => (
-                  <div key={catName} className="space-y-2">
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                      {catName}
-                    </h3>
+              <div className="space-y-6 max-h-[460px] overflow-y-auto pr-2">
+                {categorizedInterests.map((cat) => (
+                  <div key={cat.title} className="space-y-2.5">
+                    <div className="flex items-center gap-2">
+                      <span className="text-base">{cat.icon}</span>
+                      <div>
+                        <h3 className="text-xs font-bold text-slate-800 tracking-wide">
+                          {cat.title}
+                        </h3>
+                        <p className="text-[11px] text-slate-400">
+                          {cat.description}
+                        </p>
+                      </div>
+                    </div>
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {items.map((item) => {
+                      {cat.items.map((item) => {
                         const isSelected = !!selectedInterests[item.id];
-                        const level = selectedInterests[item.id] || 3;
+                        const emoji = INTEREST_EMOJIS[item.slug] || '✨';
                         return (
-                          <div
+                          <button
+                            type="button"
                             key={item.id}
-                            className={`rounded-xl border p-3 transition ${
+                            onClick={() => toggleInterest(item.id)}
+                            className={`w-full flex items-center justify-between rounded-xl border p-3 text-left transition ${
                               isSelected
-                                ? 'border-brand-500 bg-brand-50/50'
-                                : 'border-slate-200 bg-white hover:border-slate-300'
+                                ? 'border-emerald-500 bg-emerald-50/70 shadow-sm ring-1 ring-emerald-500/30'
+                                : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/50'
                             }`}
                           >
-                            <div className="flex items-center justify-between">
-                              <button
-                                type="button"
-                                onClick={() => toggleInterest(item.id)}
-                                className="text-left font-medium text-xs text-slate-900 flex-1"
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <span className="text-lg shrink-0">{emoji}</span>
+                              <span
+                                className={`text-xs font-medium truncate ${
+                                  isSelected ? 'text-emerald-950 font-semibold' : 'text-slate-800'
+                                }`}
                               >
                                 {item.name}
-                              </button>
-                              <input
-                                type="checkbox"
-                                checked={isSelected}
-                                onChange={() => toggleInterest(item.id)}
-                                className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
-                              />
+                              </span>
                             </div>
-
-                            {isSelected && (
-                              <div className="mt-2.5 pt-2 border-t border-brand-200 flex items-center justify-between text-[11px] text-slate-600">
-                                <span>Interest Level:</span>
-                                <div className="flex items-center gap-1">
-                                  {[1, 2, 3, 4, 5].map((lvl) => (
-                                    <button
-                                      type="button"
-                                      key={lvl}
-                                      onClick={() => updateProficiency(item.id, lvl)}
-                                      className={`h-5 w-5 rounded-md text-[10px] font-bold ${
-                                        level >= lvl
-                                          ? 'bg-brand-600 text-white'
-                                          : 'bg-slate-200 text-slate-600'
-                                      }`}
-                                    >
-                                      {lvl}
-                                    </button>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-                          </div>
+                            <div className="shrink-0 ml-2">
+                              {isSelected ? (
+                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                              ) : (
+                                <div className="h-4 w-4 rounded-full border border-slate-300" />
+                              )}
+                            </div>
+                          </button>
                         );
                       })}
                     </div>
