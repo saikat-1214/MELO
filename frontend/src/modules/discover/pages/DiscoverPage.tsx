@@ -117,42 +117,42 @@ export const DiscoverPage: React.FC = () => {
   return (
     <div className="space-y-10 pb-16">
       {/* Immersive Modern Hero Section */}
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-emerald-950 p-8 sm:p-12 lg:p-16 text-white shadow-2xl border border-slate-800">
-        <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-emerald-500/20 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl pointer-events-none" />
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#321044] via-[#481961] to-[#7137A8] p-8 sm:p-12 lg:p-16 text-white shadow-2xl border border-[#321044]">
+        <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[#FF9B32]/15 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-[#9B51CA]/20 blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-3xl space-y-6">
           <div className="inline-flex items-center gap-2.5 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide backdrop-blur-md border border-white/15">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-emerald-300 font-bold">Platonic &amp; Activity-First</span>
+            <span className="flex h-2 w-2 rounded-full bg-[#FF9B32] animate-pulse" />
+            <span className="text-[#FF9B32] font-bold">Platonic &amp; Activity-First</span>
             <span className="text-slate-400">&bull;</span>
             <span className="text-slate-200">Not A Dating Platform</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1]">
             Find companions for the experiences{' '}
-            <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#FF9B32] via-[#FFAF59] to-[#FFF1E3] bg-clip-text text-transparent">
               you love.
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-300 font-normal max-w-2xl leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-200 font-normal max-w-2xl leading-relaxed">
             From festival pandal hopping and stadium football matches to mountain treks and café visits — never miss an adventure simply because your friends are unavailable.
           </p>
 
           <div className="pt-2 flex flex-wrap items-center gap-4">
             <Link
               to="/activities/create"
-              className="inline-flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-500/25 hover:from-emerald-600 hover:to-teal-600 active:scale-95 transition-all duration-200"
+              className="inline-flex items-center gap-2.5 rounded-2xl bg-[#FF9B32] hover:bg-[#F28B20] text-slate-950 px-6 py-3.5 text-sm font-bold shadow-lg shadow-[#FF9B32]/25 active:scale-95 transition-all duration-200"
             >
-              <PlusCircle className="h-5 w-5" />
+              <PlusCircle className="h-5 w-5 text-slate-950" />
               Organize a Meetup
             </Link>
             <Link
               to="/recommendations"
               className="inline-flex items-center gap-2.5 rounded-2xl bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md border border-white/20 hover:bg-white/20 active:scale-95 transition-all duration-200"
             >
-              <Sparkles className="h-5 w-5 text-amber-300" />
+              <Sparkles className="h-5 w-5 text-[#FF9B32]" />
               Try AI Matchmaker
             </Link>
           </div>
@@ -238,7 +238,7 @@ export const DiscoverPage: React.FC = () => {
               placeholder="Search by activity name (e.g. Durga Puja, 5-a-side Football, Trek, Café)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 py-3 text-sm placeholder:text-slate-400 shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition"
+              className="w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 py-3 text-sm placeholder:text-slate-400 shadow-sm focus:border-[#7137A8] focus:outline-none focus:ring-4 focus:ring-[#7137A8]/10 transition"
             />
           </div>
 
@@ -250,32 +250,32 @@ export const DiscoverPage: React.FC = () => {
               placeholder="City (e.g. Kolkata)"
               value={selectedCity}
               onChange={(e) => setSelectedCity(e.target.value)}
-              className="w-full rounded-2xl border border-slate-200 bg-white pl-10 pr-3 py-3 text-sm placeholder:text-slate-400 shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition"
+              className="w-full rounded-2xl border border-slate-200 bg-white pl-10 pr-3 py-3 text-sm placeholder:text-slate-400 shadow-sm focus:border-[#7137A8] focus:outline-none focus:ring-4 focus:ring-[#7137A8]/10 transition"
             />
           </div>
 
           {/* View Mode Toggle */}
-          <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-2xl border border-slate-200 shrink-0">
+          <div className="flex items-center gap-1 bg-[#F1F3EF] p-1 rounded-2xl border border-[#E8E7E2] shrink-0">
             <button
               onClick={() => setViewMode('grid')}
               className={`flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition ${
                 viewMode === 'grid'
-                  ? 'bg-white text-slate-900 shadow-sm'
+                  ? 'bg-white text-[#7137A8] shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              <LayoutGrid className="h-3.5 w-3.5 text-emerald-600" />
+              <LayoutGrid className="h-3.5 w-3.5 text-[#7137A8]" />
               <span>Cards</span>
             </button>
             <button
               onClick={() => setViewMode('map')}
               className={`flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition ${
                 viewMode === 'map'
-                  ? 'bg-white text-slate-900 shadow-sm'
+                  ? 'bg-white text-[#7137A8] shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              <MapIcon className="h-3.5 w-3.5 text-emerald-600" />
+              <MapIcon className="h-3.5 w-3.5 text-[#7137A8]" />
               <span>Landmark Map</span>
             </button>
           </div>
@@ -289,8 +289,8 @@ export const DiscoverPage: React.FC = () => {
               onClick={() => setSelectedCategory(cat.id)}
               className={`flex items-center gap-2 shrink-0 rounded-2xl px-4 py-2.5 text-xs font-bold transition-all ${
                 selectedCategory === cat.id
-                  ? 'bg-slate-900 text-white shadow-md shadow-slate-900/20 scale-105'
-                  : 'bg-white border border-slate-200/90 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
+                  ? 'bg-[#7137A8] text-white shadow-md shadow-[#7137A8]/20 scale-105'
+                  : 'bg-white border border-[#E8E7E2] text-slate-700 hover:border-[#7137A8]/40 hover:bg-[#F1EAF8]/30'
               }`}
             >
               <span>{cat.icon}</span>
@@ -302,7 +302,7 @@ export const DiscoverPage: React.FC = () => {
         {/* Dynamic Activity Grid or Empty State */}
         {isActivitiesLoading ? (
           <div className="flex flex-col items-center justify-center py-20 space-y-3">
-            <Loader2 className="h-8 w-8 text-emerald-600 animate-spin" />
+            <Loader2 className="h-8 w-8 text-[#7137A8] animate-spin" />
             <p className="text-xs text-slate-500 font-medium">Loading live activities...</p>
           </div>
         ) : activities.length > 0 ? (
@@ -313,7 +313,7 @@ export const DiscoverPage: React.FC = () => {
             {activities.map((act) => (
               <div
                 key={act.id}
-                className="group flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-6 shadow-soft hover:shadow-glow hover:border-emerald-500/30 transition-all duration-300"
+                className="group flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-6 shadow-soft hover:shadow-melo hover:border-[#7137A8]/30 transition-all duration-300"
               >
                 <div className="space-y-4">
                   {/* Category & Status Header */}
@@ -327,9 +327,9 @@ export const DiscoverPage: React.FC = () => {
                       <span
                         className={`rounded-lg px-2 py-0.5 text-[10px] font-bold ${
                           act.viewer_status === 'HOST'
-                            ? 'bg-emerald-100 text-emerald-800'
+                            ? 'bg-purple-100 text-purple-800'
                             : act.viewer_status === 'MEMBER'
-                            ? 'bg-teal-100 text-teal-800'
+                            ? 'bg-emerald-100 text-emerald-800'
                             : 'bg-amber-100 text-amber-800'
                         }`}
                       >
@@ -344,7 +344,7 @@ export const DiscoverPage: React.FC = () => {
 
                   {/* Title & Description */}
                   <div className="space-y-1.5">
-                    <h3 className="text-base font-bold text-slate-900 group-hover:text-emerald-700 transition leading-snug line-clamp-2">
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-[#7137A8] transition leading-snug line-clamp-2">
                       {act.title}
                     </h3>
                     <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
@@ -354,7 +354,7 @@ export const DiscoverPage: React.FC = () => {
 
                   {/* Public Landmark */}
                   <div className="rounded-xl bg-slate-50 border border-slate-100 p-2.5 flex items-center gap-2 text-xs text-slate-700">
-                    <MapPin className="h-4 w-4 text-emerald-600 shrink-0" />
+                    <MapPin className="h-4 w-4 text-[#FF9B32] shrink-0" />
                     <span className="font-semibold text-slate-900">{act.city}:</span>
                     <span className="truncate text-slate-600">{act.location_landmark}</span>
                   </div>
@@ -375,16 +375,16 @@ export const DiscoverPage: React.FC = () => {
                   <div className="space-y-1.5 pt-1">
                     <div className="flex items-center justify-between text-[11px] font-semibold text-slate-500">
                       <span className="flex items-center gap-1 text-slate-700">
-                        <Users className="h-3.5 w-3.5 text-emerald-600" />
+                        <Users className="h-3.5 w-3.5 text-[#7137A8]" />
                         {act.participant_count} / {act.max_participants} Attending
                       </span>
-                      <span className="text-emerald-700 font-bold">
+                      <span className="text-[#7137A8] font-bold">
                         {act.spots_left} spots left
                       </span>
                     </div>
                     <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
                       <div
-                        className="h-full bg-emerald-500 rounded-full transition-all"
+                        className="h-full bg-[#7137A8] rounded-full transition-all"
                         style={{
                           width: `${Math.min(100, (act.participant_count / act.max_participants) * 100)}%`,
                         }}
@@ -396,7 +396,7 @@ export const DiscoverPage: React.FC = () => {
                 {/* Host Footer & Action Button */}
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-xs font-bold text-white">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#321044] text-xs font-bold text-white">
                       {act.host.avatar_url ? (
                         <img src={act.host.avatar_url} alt={act.host.display_name} className="h-full w-full rounded-xl object-cover" />
                       ) : (
@@ -411,7 +411,7 @@ export const DiscoverPage: React.FC = () => {
 
                   <Link
                     to={`/activities/${act.id}`}
-                    className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-3.5 py-2 text-xs font-bold text-white hover:bg-emerald-600 transition shadow-sm shrink-0"
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-[#7137A8] hover:bg-[#5F2D8E] px-3.5 py-2 text-xs font-bold text-white transition shadow-sm shrink-0"
                   >
                     <span>View Outing</span>
                     <ArrowRight className="h-3.5 w-3.5" />

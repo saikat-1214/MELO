@@ -118,17 +118,17 @@ export const RecommendationsPage: React.FC = () => {
   return (
     <div className="space-y-8 pb-16">
       {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-950 via-slate-900 to-emerald-950 p-8 sm:p-12 text-white shadow-xl border border-slate-800">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#321044] via-[#481961] to-[#7137A8] p-8 sm:p-12 text-white shadow-xl border border-[#321044]">
         <div className="relative z-10 max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold backdrop-blur-md border border-white/15 text-indigo-300">
-            <Sparkles className="h-3.5 w-3.5 text-amber-300" />
-            Deterministic Explainable AI Scorer v1.0
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold backdrop-blur-md border border-white/15 text-[#FFF1E3]">
+            <Sparkles className="h-3.5 w-3.5 text-[#FF9B32]" />
+            Explainable Activity &amp; Peer Scorer
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
-            Transparent AI Matching
+            Transparent Activity &amp; Peer Matching
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-            SocialConnect scores compatibility using explicit factors: shared interests, mutual schedule overlap, and public locality. Every recommendation shows you exactly <em>why</em> it was suggested.
+          <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-2xl">
+            MELO calculates interest alignment using objective factors: shared activity categories, mutual schedule overlap, and public venue proximity. Every recommendation shows you exactly <em>why</em> it was suggested.
           </p>
 
           <div className="pt-2 flex flex-wrap items-center gap-3">
@@ -136,7 +136,7 @@ export const RecommendationsPage: React.FC = () => {
               onClick={() => setActiveTab('activities')}
               className={`rounded-2xl px-5 py-2.5 text-xs font-bold transition-all ${
                 activeTab === 'activities'
-                  ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/25'
+                  ? 'bg-[#FF9B32] text-slate-950 shadow-md shadow-[#FF9B32]/25'
                   : 'bg-white/10 text-slate-300 hover:bg-white/20'
               }`}
             >
@@ -146,7 +146,7 @@ export const RecommendationsPage: React.FC = () => {
               onClick={() => setActiveTab('peers')}
               className={`rounded-2xl px-5 py-2.5 text-xs font-bold transition-all ${
                 activeTab === 'peers'
-                  ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/25'
+                  ? 'bg-[#FF9B32] text-slate-950 shadow-md shadow-[#FF9B32]/25'
                   : 'bg-white/10 text-slate-300 hover:bg-white/20'
               }`}
             >
@@ -156,7 +156,7 @@ export const RecommendationsPage: React.FC = () => {
               onClick={() => setShowTuner(!showTuner)}
               className="inline-flex items-center gap-1.5 rounded-2xl border border-white/20 bg-white/5 px-4 py-2.5 text-xs font-semibold text-slate-200 hover:bg-white/15 transition"
             >
-              <Sliders className="h-3.5 w-3.5 text-teal-300" />
+              <Sliders className="h-3.5 w-3.5 text-[#FF9B32]" />
               <span>{showTuner ? 'Hide Weight Sliders' : 'Tune Factor Weights'}</span>
             </button>
           </div>

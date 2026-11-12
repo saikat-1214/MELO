@@ -1,7 +1,8 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { RootLayout } from '@/app/layouts/RootLayout';
 import { ProtectedRoute } from '@/app/router/ProtectedRoute';
+import { HomePage } from '@/modules/landing/pages/HomePage';
 import { DiscoverPage } from '@/modules/discover/pages/DiscoverPage';
 import { RecommendationsPage } from '@/modules/matching/pages/RecommendationsPage';
 import { MyActivitiesPage } from '@/modules/meetups/pages/MyActivitiesPage';
@@ -19,7 +20,9 @@ export const AppRoutes: React.FC = () => {
     <Routes>
       <Route element={<RootLayout />}>
         {/* Public Routes */}
-        <Route path="/" element={<DiscoverPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/explore" element={<DiscoverPage />} />
+        <Route path="/activities" element={<Navigate to="/explore" replace />} />
         <Route path="/activities/:id" element={<ActivityDetailPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
