@@ -24,7 +24,7 @@ export const INDIAN_STATES: StateInfo[] = [
     name: 'Andaman and Nicobar Islands',
     code: 'AN',
     districts: [
-      'Nicobar', 'North and Middle Andaman', 'South Andaman (Port Blair)'
+      'Nicobar', 'North and Middle Andaman', 'South Andaman'
     ],
   },
   {
@@ -32,12 +32,12 @@ export const INDIAN_STATES: StateInfo[] = [
     code: 'AP',
     districts: [
       'Alluri Sitharama Raju', 'Anakapalli', 'Ananthapuramu', 'Annamayya',
-      'Bapatla', 'Chittoor', 'Dr. B.R. Ambedkar Konaseema', 'East Godavari (Rajamahendravaram)',
-      'Eluru', 'Guntur', 'Kakinada', 'Krishna (Machilipatnam)',
-      'Kurnool', 'Nandyal', 'NTR (Vijayawada)', 'Palnadu (Narasaraopet)',
-      'Parvathipuram Manyam', 'Prakasam (Ongole)', 'Sri Potti Sriramulu Nellore', 'Sri Sathya Sai',
+      'Bapatla', 'Chittoor', 'Dr. B.R. Ambedkar Konaseema', 'East Godavari',
+      'Eluru', 'Guntur', 'Kakinada', 'Krishna',
+      'Kurnool', 'Nandyal', 'NTR', 'Palnadu',
+      'Parvathipuram Manyam', 'Prakasam', 'Sri Potti Sriramulu Nellore', 'Sri Sathya Sai',
       'Srikakulam', 'Tirupati', 'Visakhapatnam', 'Vizianagaram',
-      'West Godavari (Bhimavaram)', 'YSR Kadapa'
+      'West Godavari', 'YSR Kadapa'
     ],
   },
   {
@@ -48,7 +48,7 @@ export const INDIAN_STATES: StateInfo[] = [
       'East Siang', 'Kamle', 'Kra Daadi', 'Kurung Kumey',
       'Lepa Rada', 'Lohit', 'Longding', 'Lower Dibang Valley',
       'Lower Siang', 'Lower Subansiri', 'Namsai', 'Pakke Kessang',
-      'Papum Pare (Itanagar)', 'Shi Yomi', 'Siang', 'Tawang',
+      'Papum Pare', 'Shi Yomi', 'Siang', 'Tawang',
       'Tirap', 'Upper Siang', 'Upper Subansiri', 'West Kameng',
       'West Siang'
     ],
@@ -58,13 +58,13 @@ export const INDIAN_STATES: StateInfo[] = [
     code: 'AS',
     districts: [
       'Baksa', 'Barpeta', 'Biswanath', 'Bongaigaon',
-      'Cachar (Silchar)', 'Charaideo', 'Chirang', 'Darrang',
+      'Cachar', 'Charaideo', 'Chirang', 'Darrang',
       'Dhemaji', 'Dhubri', 'Dibrugarh', 'Dima Hasao',
       'Goalpara', 'Golaghat', 'Hailakandi', 'Hojai',
-      'Jorhat', 'Kamrup', 'Kamrup Metropolitan (Guwahati)', 'Karbi Anglong',
+      'Jorhat', 'Kamrup', 'Kamrup Metropolitan', 'Karbi Anglong',
       'Karimganj', 'Kokrajhar', 'Lakhimpur', 'Majuli',
       'Morigaon', 'Nagaon', 'Nalbari', 'Sivasagar',
-      'Sonitpur (Tezpur)', 'South Salmara-Mankachar', 'Tamulpur', 'Tinsukia',
+      'Sonitpur', 'South Salmara-Mankachar', 'Tamulpur', 'Tinsukia',
       'Udalguri', 'West Karbi Anglong'
     ],
   },
@@ -73,15 +73,15 @@ export const INDIAN_STATES: StateInfo[] = [
     code: 'BR',
     districts: [
       'Araria', 'Arwal', 'Aurangabad', 'Banka',
-      'Begusarai', 'Bhagalpur', 'Bhojpur (Arrah)', 'Buxar',
-      'Darbhanga', 'East Champaran (Motihari)', 'Gaya', 'Gopalganj',
-      'Jamui', 'Jehanabad', 'Kaimur (Bhabua)', 'Katihar',
+      'Begusarai', 'Bhagalpur', 'Bhojpur', 'Buxar',
+      'Darbhanga', 'East Champaran', 'Gaya', 'Gopalganj',
+      'Jamui', 'Jehanabad', 'Kaimur', 'Katihar',
       'Khagaria', 'Kishanganj', 'Lakhisarai', 'Madhepura',
-      'Madhubani', 'Munger', 'Muzaffarpur', 'Nalanda (Bihar Sharif)',
-      'Nawada', 'Patna', 'Purnia', 'Rohtas (Sasaram)',
-      'Saharsa', 'Samastipur', 'Saran (Chhapra)', 'Sheikhpura',
+      'Madhubani', 'Munger', 'Muzaffarpur', 'Nalanda',
+      'Nawada', 'Patna', 'Purnia', 'Rohtas',
+      'Saharsa', 'Samastipur', 'Saran', 'Sheikhpura',
       'Sheohar', 'Sitamarhi', 'Siwan', 'Supaul',
-      'Vaishali (Hajipur)', 'West Champaran (Bettiah)'
+      'Vaishali', 'West Champaran'
     ],
   },
   {
@@ -95,25 +95,25 @@ export const INDIAN_STATES: StateInfo[] = [
     name: 'Chhattisgarh',
     code: 'CG',
     districts: [
-      'Balod', 'Baloda Bazar', 'Balrampur', 'Bastar (Jagdalpur)',
-      'Bemetara', 'Bijapur', 'Bilaspur', 'Dantewada (South Bastar)',
-      'Dhamtari', 'Durg (Bhilai)', 'Gariaband', 'Gaurela-Pendra-Marwahi',
-      'Janjgir-Champa', 'Jashpur', 'Kabirdham (Kawardha)', 'Kanker (North Bastar)',
+      'Balod', 'Baloda Bazar', 'Balrampur', 'Bastar',
+      'Bemetara', 'Bijapur', 'Bilaspur', 'Dantewada',
+      'Dhamtari', 'Durg', 'Gariaband', 'Gaurela-Pendra-Marwahi',
+      'Janjgir-Champa', 'Jashpur', 'Kabirdham', 'Kanker',
       'Khairagarh-Chhuikhadan-Gandai', 'Kondagaon', 'Korba', 'Korea',
       'Mahasamund', 'Manendragarh-Chirmiri-Bharatpur', 'Mohla-Manpur-Ambagarh Chowki', 'Mungeli',
       'Narayanpur', 'Raigarh', 'Raipur', 'Rajnandgaon',
-      'Sarangarh-Bilaigarh', 'Sukma', 'Surajpur', 'Surguja (Ambikapur)'
+      'Sarangarh-Bilaigarh', 'Sukma', 'Surajpur', 'Surguja'
     ],
   },
   {
     name: 'Dadra and Nagar Haveli and Daman and Diu',
     code: 'DH',
     districts: [
-      'Dadra and Nagar Haveli (Silvassa)', 'Daman', 'Diu'
+      'Dadra and Nagar Haveli', 'Daman', 'Diu'
     ],
   },
   {
-    name: 'Delhi (NCT)',
+    name: 'Delhi',
     code: 'DL',
     districts: [
       'Central Delhi', 'East Delhi', 'New Delhi', 'North Delhi',
@@ -125,7 +125,7 @@ export const INDIAN_STATES: StateInfo[] = [
     name: 'Goa',
     code: 'GA',
     districts: [
-      'North Goa (Panaji)', 'South Goa (Margao)'
+      'North Goa', 'South Goa'
     ],
   },
   {
@@ -133,13 +133,13 @@ export const INDIAN_STATES: StateInfo[] = [
     code: 'GJ',
     districts: [
       'Ahmedabad', 'Amreli', 'Anand', 'Aravalli',
-      'Banaskantha (Palanpur)', 'Bharuch', 'Bhavnagar', 'Botad',
+      'Banaskantha', 'Bharuch', 'Bhavnagar', 'Botad',
       'Chhota Udaipur', 'Dahod', 'Dang', 'Devbhumi Dwarka',
       'Gandhinagar', 'Gir Somnath', 'Jamnagar', 'Junagadh',
-      'Kheda (Nadiad)', 'Kutch (Bhuj)', 'Mahisagar', 'Mehsana',
-      'Morbi', 'Narmada (Rajpipla)', 'Navsari', 'Panchmahal (Godhra)',
-      'Patan', 'Porbandar', 'Rajkot', 'Sabarkantha (Himmatnagar)',
-      'Surat', 'Surendranagar', 'Tapi (Vyara)', 'Vadodara',
+      'Kheda', 'Kutch', 'Mahisagar', 'Mehsana',
+      'Morbi', 'Narmada', 'Navsari', 'Panchmahal',
+      'Patan', 'Porbandar', 'Rajkot', 'Sabarkantha',
+      'Surat', 'Surendranagar', 'Tapi', 'Vadodara',
       'Valsad'
     ],
   },
@@ -159,9 +159,9 @@ export const INDIAN_STATES: StateInfo[] = [
     name: 'Himachal Pradesh',
     code: 'HP',
     districts: [
-      'Bilaspur', 'Chamba', 'Hamirpur', 'Kangra (Dharamshala)',
-      'Kinnaur', 'Kullu (Manali)', 'Lahaul and Spiti', 'Mandi',
-      'Shimla', 'Sirmaur (Nahan)', 'Solan', 'Una'
+      'Bilaspur', 'Chamba', 'Hamirpur', 'Kangra',
+      'Kinnaur', 'Kullu', 'Lahaul and Spiti', 'Mandi',
+      'Shimla', 'Sirmaur', 'Solan', 'Una'
     ],
   },
   {
@@ -180,11 +180,11 @@ export const INDIAN_STATES: StateInfo[] = [
     code: 'JH',
     districts: [
       'Bokaro', 'Chatra', 'Deoghar', 'Dhanbad',
-      'Dumka', 'East Singhbhum (Jamshedpur)', 'Garhwa', 'Giridih',
+      'Dumka', 'East Singhbhum', 'Garhwa', 'Giridih',
       'Godda', 'Gumla', 'Hazaribagh', 'Jamtara',
       'Khunti', 'Koderma', 'Latehar', 'Lohardaga',
       'Pakur', 'Palamu', 'Ramgarh', 'Ranchi',
-      'Sahibganj', 'Seraikela Kharsawan', 'Simdega', 'West Singhbhum (Chaibasa)'
+      'Sahibganj', 'Seraikela Kharsawan', 'Simdega', 'West Singhbhum'
     ],
   },
   {
@@ -193,11 +193,11 @@ export const INDIAN_STATES: StateInfo[] = [
     districts: [
       'Bagalkote', 'Ballari', 'Belagavi', 'Bengaluru Rural',
       'Bengaluru Urban', 'Bidar', 'Chamarajanagara', 'Chikkaballapura',
-      'Chikkamagaluru', 'Chitradurga', 'Dakshina Kannada (Mangaluru)', 'Davangere',
-      'Dharwad (Hubballi)', 'Gadag', 'Hassan', 'Haveri',
-      'Kalaburagi', 'Kodagu (Madikeri)', 'Kolar', 'Koppal',
+      'Chikkamagaluru', 'Chitradurga', 'Dakshina Kannada', 'Davangere',
+      'Dharwad', 'Gadag', 'Hassan', 'Haveri',
+      'Kalaburagi', 'Kodagu', 'Kolar', 'Koppal',
       'Mandya', 'Mysuru', 'Raichur', 'Ramanagara',
-      'Shivamogga', 'Tumakuru', 'Udupi', 'Uttara Kannada (Karwar)',
+      'Shivamogga', 'Tumakuru', 'Udupi', 'Uttara Kannada',
       'Vijayanagara', 'Yadgir'
     ],
   },
@@ -205,7 +205,7 @@ export const INDIAN_STATES: StateInfo[] = [
     name: 'Kerala',
     code: 'KL',
     districts: [
-      'Alappuzha', 'Ernakulam (Kochi)', 'Idukki', 'Kannur',
+      'Alappuzha', 'Ernakulam', 'Idukki', 'Kannur',
       'Kasaragod', 'Kollam', 'Kottayam', 'Kozhikode',
       'Malappuram', 'Palakkad', 'Pathanamthitta', 'Thiruvananthapuram',
       'Thrissur', 'Wayanad'
@@ -222,7 +222,7 @@ export const INDIAN_STATES: StateInfo[] = [
     name: 'Lakshadweep',
     code: 'LD',
     districts: [
-      'Lakshadweep (Kavaratti)'
+      'Lakshadweep'
     ],
   },
   {
@@ -234,7 +234,7 @@ export const INDIAN_STATES: StateInfo[] = [
       'Bhopal', 'Burhanpur', 'Chhatarpur', 'Chhindwara',
       'Damoh', 'Datia', 'Dewas', 'Dhar',
       'Dindori', 'Guna', 'Gwalior', 'Harda',
-      'Hoshangabad (Narmadapuram)', 'Indore', 'Jabalpur', 'Jhabua',
+      'Hoshangabad', 'Indore', 'Jabalpur', 'Jhabua',
       'Katni', 'Khandwa', 'Khargone', 'Mandla',
       'Mandsaur', 'Morena', 'Narsinghpur', 'Neemuch',
       'Niwari', 'Panna', 'Raisen', 'Rajgarh',
@@ -248,16 +248,15 @@ export const INDIAN_STATES: StateInfo[] = [
     name: 'Maharashtra',
     code: 'MH',
     districts: [
-      'Ahmednagar (Ahilyanagar)', 'Akola', 'Amravati', 'Beed',
-      'Bhandara', 'Buldhana', 'Chandrapur', 'Chhatrapati Sambhajinagar (Aurangabad)',
-      'Dharashiv (Osmanabad)', 'Dhule', 'Gadchiroli', 'Gondia',
+      'Ahmednagar', 'Akola', 'Amravati', 'Beed',
+      'Bhandara', 'Buldhana', 'Chandrapur', 'Chhatrapati Sambhajinagar',
+      'Dharashiv', 'Dhule', 'Gadchiroli', 'Gondia',
       'Hingoli', 'Jalgaon', 'Jalna', 'Kolhapur',
       'Latur', 'Mumbai City', 'Mumbai Suburban', 'Nagpur',
-      'Nanded', 'Nandurbar', 'Nashik', 'Navi Mumbai',
-      'Palghar', 'Parbhani', 'Pune', 'Raigad',
-      'Ratnagiri', 'Sangli', 'Satara', 'Sindhudurg',
-      'Solapur', 'Thane', 'Wardha', 'Washim',
-      'Yavatmal'
+      'Nanded', 'Nandurbar', 'Nashik', 'Palghar',
+      'Parbhani', 'Pune', 'Raigad', 'Ratnagiri',
+      'Sangli', 'Satara', 'Sindhudurg', 'Solapur',
+      'Thane', 'Wardha', 'Washim', 'Yavatmal'
     ],
   },
   {
@@ -274,9 +273,9 @@ export const INDIAN_STATES: StateInfo[] = [
     name: 'Meghalaya',
     code: 'ML',
     districts: [
-      'East Garo Hills', 'East Jaintia Hills', 'East Khasi Hills (Shillong)', 'Eastern West Khasi Hills',
+      'East Garo Hills', 'East Jaintia Hills', 'East Khasi Hills', 'Eastern West Khasi Hills',
       'North Garo Hills', 'Ri-Bhoi', 'South Garo Hills', 'South West Garo Hills',
-      'South West Khasi Hills', 'West Garo Hills (Tura)', 'West Jaintia Hills', 'West Khasi Hills'
+      'South West Khasi Hills', 'West Garo Hills', 'West Jaintia Hills', 'West Khasi Hills'
     ],
   },
   {
@@ -304,12 +303,12 @@ export const INDIAN_STATES: StateInfo[] = [
     districts: [
       'Angul', 'Balangir', 'Balasore', 'Bargarh',
       'Bhadrak', 'Boudh', 'Cuttack', 'Deogarh',
-      'Dhenkanal', 'Gajapati', 'Ganjam (Berhampur)', 'Jagatsinghpur',
+      'Dhenkanal', 'Gajapati', 'Ganjam', 'Jagatsinghpur',
       'Jajpur', 'Jharsuguda', 'Kalahandi', 'Kandhamal',
-      'Kendrapara', 'Kendujhar (Keonjhar)', 'Khordha (Bhubaneswar)', 'Koraput',
-      'Malkangiri', 'Mayurbhanj (Baripada)', 'Nabarangpur', 'Nayagarh',
+      'Kendrapara', 'Kendujhar', 'Khordha', 'Koraput',
+      'Malkangiri', 'Mayurbhanj', 'Nabarangpur', 'Nayagarh',
       'Nuapada', 'Puri', 'Rayagada', 'Sambalpur',
-      'Subarnapur (Sonepur)', 'Sundargarh (Rourkela)'
+      'Subarnapur', 'Sundargarh'
     ],
   },
   {
@@ -327,8 +326,8 @@ export const INDIAN_STATES: StateInfo[] = [
       'Fatehgarh Sahib', 'Fazilka', 'Firozpur', 'Gurdaspur',
       'Hoshiarpur', 'Jalandhar', 'Kapurthala', 'Ludhiana',
       'Malerkotla', 'Mansa', 'Moga', 'Muktsar',
-      'Pathankot', 'Patiala', 'Rupnagar (Ropar)', 'Sahibzada Ajit Singh Nagar (Mohali)',
-      'Sangrur', 'Shahid Bhagat Singh Nagar (Nawanshahr)', 'Tarn Taran'
+      'Pathankot', 'Patiala', 'Rupnagar', 'Sahibzada Ajit Singh Nagar',
+      'Sangrur', 'Shahid Bhagat Singh Nagar', 'Tarn Taran'
     ],
   },
   {
@@ -354,7 +353,7 @@ export const INDIAN_STATES: StateInfo[] = [
     name: 'Sikkim',
     code: 'SK',
     districts: [
-      'Gangtok (East Sikkim)', 'Gyalshing (West Sikkim)', 'Mangan (North Sikkim)', 'Namchi (South Sikkim)',
+      'Gangtok', 'Gyalshing', 'Mangan', 'Namchi',
       'Pakyong', 'Soreng'
     ],
   },
@@ -364,11 +363,11 @@ export const INDIAN_STATES: StateInfo[] = [
     districts: [
       'Ariyalur', 'Chengalpattu', 'Chennai', 'Coimbatore',
       'Cuddalore', 'Dharmapuri', 'Dindigul', 'Erode',
-      'Kallakurichi', 'Kanchipuram', 'Kanyakumari (Nagercoil)', 'Karur',
+      'Kallakurichi', 'Kanchipuram', 'Kanyakumari', 'Karur',
       'Krishnagiri', 'Madurai', 'Mayiladuthurai', 'Nagapattinam',
-      'Namakkal', 'Nilgiris (Udhagamandalam)', 'Perambalur', 'Pudukkottai',
+      'Namakkal', 'Nilgiris', 'Perambalur', 'Pudukkottai',
       'Ramanathapuram', 'Ranipet', 'Salem', 'Sivaganga',
-      'Tenkasi', 'Thanjavur', 'Theni', 'Thoothukudi (Tuticorin)',
+      'Tenkasi', 'Thanjavur', 'Theni', 'Thoothukudi',
       'Tiruchirappalli', 'Tirunelveli', 'Tirupathur', 'Tiruppur',
       'Tiruvallur', 'Tiruvannamalai', 'Tiruvarur', 'Vellore',
       'Viluppuram', 'Virudhunagar'
@@ -393,8 +392,8 @@ export const INDIAN_STATES: StateInfo[] = [
     name: 'Tripura',
     code: 'TR',
     districts: [
-      'Dhalai (Ambassa)', 'Gomati (Udaipur)', 'Khowai', 'North Tripura (Dharmanagar)',
-      'Sepahijala (Bishramganj)', 'South Tripura (Belonia)', 'Unakoti (Kailashahar)', 'West Tripura (Agartala)'
+      'Dhalai', 'Gomati', 'Khowai', 'North Tripura',
+      'Sepahijala', 'South Tripura', 'Unakoti', 'West Tripura'
     ],
   },
   {
@@ -408,15 +407,15 @@ export const INDIAN_STATES: StateInfo[] = [
       'Bhadohi', 'Bijnor', 'Budaun', 'Bulandshahr',
       'Chandauli', 'Chitrakoot', 'Deoria', 'Etah',
       'Etawah', 'Farrukhabad', 'Fatehpur', 'Firozabad',
-      'Gautam Buddha Nagar (Noida)', 'Ghaziabad', 'Ghazipur', 'Gonda',
+      'Gautam Buddha Nagar', 'Ghaziabad', 'Ghazipur', 'Gonda',
       'Gorakhpur', 'Hamirpur', 'Hapur', 'Hardoi',
       'Hathras', 'Jalaun', 'Jaunpur', 'Jhansi',
       'Kannauj', 'Kanpur Dehat', 'Kanpur Nagar', 'Kasganj',
-      'Kaushambi', 'Kheri (Lakhimpur)', 'Kushinagar', 'Lalitpur',
+      'Kaushambi', 'Kushinagar', 'Lakhimpur Kheri', 'Lalitpur',
       'Lucknow', 'Maharajganj', 'Mahoba', 'Mainpuri',
       'Mathura', 'Mau', 'Meerut', 'Mirzapur',
       'Moradabad', 'Muzaffarnagar', 'Pilibhit', 'Pratapgarh',
-      'Prayagraj (Allahabad)', 'Raebareli', 'Rampur', 'Saharanpur',
+      'Prayagraj', 'Raebareli', 'Rampur', 'Saharanpur',
       'Sambhal', 'Sant Kabir Nagar', 'Shahjahanpur', 'Shamli',
       'Shravasti', 'Siddharthnagar', 'Sitapur', 'Sonbhadra',
       'Sultanpur', 'Unnao', 'Varanasi'
@@ -426,9 +425,9 @@ export const INDIAN_STATES: StateInfo[] = [
     name: 'Uttarakhand',
     code: 'UK',
     districts: [
-      'Almora', 'Bageshwar', 'Chamoli (Gopeshwar)', 'Champawat',
-      'Dehradun', 'Haridwar', 'Nainital (Haldwani)', 'Pauri Garhwal',
-      'Pithoragarh', 'Rudraprayag', 'Tehri Garhwal', 'Udham Singh Nagar (Rudrapur)',
+      'Almora', 'Bageshwar', 'Chamoli', 'Champawat',
+      'Dehradun', 'Haridwar', 'Nainital', 'Pauri Garhwal',
+      'Pithoragarh', 'Rudraprayag', 'Tehri Garhwal', 'Udham Singh Nagar',
       'Uttarkashi'
     ],
   },
@@ -437,11 +436,11 @@ export const INDIAN_STATES: StateInfo[] = [
     code: 'WB',
     districts: [
       'Alipurduar', 'Bankura', 'Birbhum', 'Cooch Behar',
-      'Dakshin Dinajpur (Balurghat)', 'Darjeeling', 'Hooghly (Chinsurah)', 'Howrah',
+      'Dakshin Dinajpur', 'Darjeeling', 'Hooghly', 'Howrah',
       'Jalpaiguri', 'Jhargram', 'Kalimpong', 'Kolkata',
-      'Malda (English Bazar)', 'Murshidabad (Baharampur)', 'Nadia (Krishnanagar)', 'North 24 Parganas (Barasat)',
-      'Paschim Bardhaman (Asansol)', 'Paschim Medinipur (Midnapore)', 'Purba Bardhaman (Bardhaman)', 'Purba Medinipur (Tamluk)',
-      'Purulia', 'South 24 Parganas (Alipore)', 'Uttar Dinajpur (Raiganj)'
+      'Malda', 'Murshidabad', 'Nadia', 'North 24 Parganas',
+      'Paschim Bardhaman', 'Paschim Medinipur', 'Purba Bardhaman', 'Purba Medinipur',
+      'Purulia', 'South 24 Parganas', 'Uttar Dinajpur'
     ],
   },
 ];
