@@ -15,6 +15,7 @@ import {
   Loader2,
   ShieldAlert,
 } from 'lucide-react';
+import { SmartLocationPicker } from '@/shared/components/SmartLocationPicker';
 
 interface InterestItem {
   id: string;
@@ -426,19 +427,10 @@ export const OnboardingPage: React.FC = () => {
               </div>
             </div>
 
-            <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
-                General City / District *
-              </label>
-              <input
-                type="text"
-                required
-                value={generalLocation}
-                onChange={(e) => setGeneralLocation(e.target.value)}
-                placeholder="e.g. Salt Lake, Kolkata"
-                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
-              />
-            </div>
+            <SmartLocationPicker
+              initialValue={generalLocation}
+              onChange={(formatted) => setGeneralLocation(formatted)}
+            />
 
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
