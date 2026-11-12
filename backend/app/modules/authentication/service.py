@@ -151,6 +151,11 @@ class AuthService:
         access_token = create_access_token(user_claims)
         refresh_token = create_refresh_token(user_claims)
 
+        smtp_configured = bool(
+            settings.SMTP_HOST and settings.SMTP_USER and settings.SMTP_PASSWORD
+        )
+        dev_code = otp_code if (settings.ENVIRONMENT == "development" or not smtp_configured) else None
+
         return TokenResponse(
             access_token=access_token,
             refresh_token=refresh_token,
@@ -159,7 +164,7 @@ class AuthService:
             email=new_user.email,
             is_onboarded=False,
             is_verified=False,
-            dev_otp=None,
+            dev_otp=dev_code,
         )
 
     async def verify_email_otp(
@@ -287,9 +292,14 @@ class AuthService:
         print(f" OTP Code: {otp_code} (Valid for 15 minutes)")
         print(f"=======================================================\n")
 
+        smtp_configured = bool(
+            settings.SMTP_HOST and settings.SMTP_USER and settings.SMTP_PASSWORD
+        )
+        dev_code = otp_code if (settings.ENVIRONMENT == "development" or not smtp_configured) else None
+
         return {
-            "message": f"A new 6-digit verification code has been sent to {clean_email}.",
-            "dev_otp": None,
+            "message": f"A new 6-digit verification code has been generated for {clean_email}.",
+            "dev_otp": dev_code,
         }
 
     async def login(self, db: AsyncSession, req: UserLoginRequest) -> TokenResponse:

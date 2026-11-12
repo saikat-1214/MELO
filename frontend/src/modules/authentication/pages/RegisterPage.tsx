@@ -61,6 +61,7 @@ export const RegisterPage: React.FC = () => {
 
   // OTP inputs (6 digits)
   const [otp, setOtp] = useState<string[]>(['', '', '', '', '', '']);
+  const [devOtp, setDevOtp] = useState<string | null>(null);
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
   const [otpError, setOtpError] = useState<string | null>(null);
   const [resendCooldown, setResendCooldown] = useState(0);
@@ -154,8 +155,11 @@ export const RegisterPage: React.FC = () => {
 
     setIsSubmitting(true);
     try {
-      await registerUser(data.email, data.password);
+      const res = await registerUser(data.email, data.password);
       setRegisteredEmail(data.email.trim().toLowerCase());
+      if (res?.dev_otp) {
+        setDevOtp(res.dev_otp);
+      }
       setResendCooldown(60);
       setAuthStep('verify_otp');
     } catch (err) {
@@ -216,6 +220,12 @@ export const RegisterPage: React.FC = () => {
     }
   };
 
+  const handleQuickFillOtp = () => {
+    if (!devOtp || devOtp.length !== 6) return;
+    setOtp(devOtp.split(''));
+    otpInputsRef.current[5]?.focus();
+  };
+
   const handleResendOtp = async () => {
     if (resendCooldown > 0 || isResending) return;
     setIsResending(true);
@@ -223,6 +233,9 @@ export const RegisterPage: React.FC = () => {
     setResendMessage(null);
     try {
       const res = await resendOtp(registeredEmail);
+      if (res?.dev_otp) {
+        setDevOtp(res.dev_otp);
+      }
       setResendCooldown(60);
       setResendMessage(res.message);
     } catch (err) {
@@ -252,6 +265,31 @@ export const RegisterPage: React.FC = () => {
               Enter it below to verify your inbox.
             </p>
           </div>
+
+          {/* Development Quick-Fill Helper (Active in dev mode when SMTP is not configured) */}
+          {devOtp && (
+            <div className="rounded-2xl border border-amber-300 bg-amber-50/95 p-4 text-xs text-amber-900 shadow-sm flex items-center justify-between gap-3">
+              <div>
+                <p className="font-bold flex items-center gap-1.5 text-amber-800">
+                  <Sparkles className="h-4 w-4 text-amber-600" />
+                  Development Quick-Fill Code:
+                </p>
+                <p className="font-mono text-lg font-extrabold tracking-widest text-amber-950 mt-1">
+                  {devOtp}
+                </p>
+                <p className="text-[10px] text-amber-700 mt-0.5">
+                  SMTP is not configured in .env. Click "Fill Code" to auto-fill for testing.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={handleQuickFillOtp}
+                className="shrink-0 rounded-xl bg-amber-600 px-3.5 py-2 text-xs font-bold text-white shadow hover:bg-amber-700 transition"
+              >
+                Fill Code
+              </button>
+            </div>
+          )}
 
           {/* Notice to check inbox */}
           <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-3.5 text-xs text-emerald-900 flex items-start gap-2.5">
