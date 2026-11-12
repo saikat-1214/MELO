@@ -36,6 +36,7 @@ from app.shared.exceptions.base import (
     BadRequestException,
 )
 from app.shared.utils.email_verifier import verify_email_address
+from app.shared.utils.email_sender import send_verification_email
 
 logger = logging.getLogger("auth_service")
 
@@ -134,7 +135,10 @@ class AuthService:
         db.add(verification_code)
         await db.commit()
 
-        # Log OTP clearly for development/terminal visibility
+        # Send real verification email via SMTP
+        await send_verification_email(clean_email, otp_code)
+
+        # Log OTP clearly for terminal visibility
         logger.info(f"📧 [EMAIL VERIFICATION OTP] Code for {clean_email}: {otp_code}")
         print(f"\n=======================================================")
         print(f" 🔑 SOCIALCONNECT EMAIL VERIFICATION CODE")
@@ -155,7 +159,7 @@ class AuthService:
             email=new_user.email,
             is_onboarded=False,
             is_verified=False,
-            dev_otp=otp_code if settings.DEBUG else None,
+            dev_otp=None,
         )
 
     async def verify_email_otp(
@@ -273,6 +277,9 @@ class AuthService:
         db.add(new_code)
         await db.commit()
 
+        # Send real verification email via SMTP
+        await send_verification_email(clean_email, otp_code)
+
         logger.info(f"📧 [EMAIL VERIFICATION OTP RESENT] Code for {clean_email}: {otp_code}")
         print(f"\n=======================================================")
         print(f" 🔑 SOCIALCONNECT EMAIL VERIFICATION CODE (RESENT)")
@@ -282,7 +289,7 @@ class AuthService:
 
         return {
             "message": f"A new 6-digit verification code has been sent to {clean_email}.",
-            "dev_otp": otp_code if settings.DEBUG else None,
+            "dev_otp": None,
         }
 
     async def login(self, db: AsyncSession, req: UserLoginRequest) -> TokenResponse:

@@ -50,7 +50,6 @@ export const RegisterPage: React.FC = () => {
   // Wizard view state: 'form' | 'verify_otp'
   const [authStep, setAuthStep] = useState<'form' | 'verify_otp'>('form');
   const [registeredEmail, setRegisteredEmail] = useState('');
-  const [devOtp, setDevOtp] = useState<string | null>(null);
 
   // Form states
   const [serverError, setServerError] = useState<string | null>(null);
@@ -150,9 +149,8 @@ export const RegisterPage: React.FC = () => {
 
     setIsSubmitting(true);
     try {
-      const result = await registerUser(data.email, data.password);
+      await registerUser(data.email, data.password);
       setRegisteredEmail(data.email.trim().toLowerCase());
-      setDevOtp(result.dev_otp || null);
       setResendCooldown(60);
       setAuthStep('verify_otp');
     } catch (err) {
@@ -222,9 +220,6 @@ export const RegisterPage: React.FC = () => {
       const res = await resendOtp(registeredEmail);
       setResendCooldown(60);
       setResendMessage(res.message);
-      if (res.dev_otp) {
-        setDevOtp(res.dev_otp);
-      }
     } catch (err) {
       setOtpError(getErrorMessage(err));
     } finally {
@@ -253,31 +248,16 @@ export const RegisterPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Development Mode Helper Banner */}
-          {devOtp && (
-            <div className="rounded-2xl border border-amber-300 bg-amber-50/80 p-3 text-xs text-amber-900 space-y-1">
-              <div className="flex items-center gap-1.5 font-bold text-amber-800">
-                <Sparkles className="h-4 w-4 text-amber-600" />
-                <span>Development Quick-Fill Code:</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-sm tracking-widest font-black text-amber-950">
-                  {devOtp}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    const digits = devOtp.split('');
-                    setOtp(digits);
-                    otpInputsRef.current[5]?.focus();
-                  }}
-                  className="rounded-lg bg-amber-600 px-2 py-1 text-[10px] font-bold text-white hover:bg-amber-700 transition"
-                >
-                  Fill Code
-                </button>
-              </div>
+          {/* Notice to check inbox */}
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-3.5 text-xs text-emerald-900 flex items-start gap-2.5">
+            <Mail className="h-4 w-4 shrink-0 mt-0.5 text-emerald-600" />
+            <div>
+              <p className="font-semibold">Check your email inbox or spam folder</p>
+              <p className="text-[11px] text-emerald-700 mt-0.5">
+                We've sent an email containing your 6-digit confirmation code. If the email doesn't exist or is unreachable, the code will not arrive.
+              </p>
             </div>
-          )}
+          </div>
 
           {otpError && (
             <div className="rounded-2xl border border-red-200 bg-red-50 p-3.5 text-xs text-red-700 flex items-start gap-2.5">

@@ -34,3 +34,4 @@ def upgrade() -> None:
 def downgrade() -> None:
     op.drop_index('ix_email_verification_codes_email', table_name='email_verification_codes')
     op.drop_table('email_verification_codes')
+

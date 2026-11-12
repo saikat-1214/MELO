@@ -17,3 +17,4 @@ class EmailVerificationCode(Base, TimestampMixin):
     expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     is_used: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     attempts: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+

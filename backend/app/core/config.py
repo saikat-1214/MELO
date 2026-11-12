@@ -26,6 +26,15 @@ class Settings(BaseSettings):
     AI_SERVICE_URL: str = "http://localhost:8001"
     AI_SERVICE_TIMEOUT_SECONDS: float = 5.0
 
+    # Email / SMTP Delivery
+    SMTP_HOST: Optional[str] = None
+    SMTP_PORT: int = 587
+    SMTP_USER: Optional[str] = None
+    SMTP_PASSWORD: Optional[str] = None
+    SMTP_TLS: bool = True
+    EMAILS_FROM_EMAIL: Optional[str] = None
+    EMAILS_FROM_NAME: str = "SocialConnect"
+
     # CORS
     CORS_ORIGINS: Union[List[str], str] = ["http://localhost:5173", "http://127.0.0.1:5173"]
 
