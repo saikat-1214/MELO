@@ -104,3 +104,4 @@ If you did not request this account, you can safely ignore this email.
     return await asyncio.to_thread(
         _send_smtp_sync, to_email, subject, html_content, text_content
     )
+

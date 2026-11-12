@@ -23,6 +23,30 @@ DISPOSABLE_DOMAINS = {
     "inboxkitten.com",
 }
 
+# Major trusted mail providers guaranteed to have active MX records (bypasses network DNS query)
+MAJOR_TRUSTED_DOMAINS = {
+    "gmail.com",
+    "googlemail.com",
+    "yahoo.com",
+    "yahoo.co.in",
+    "yahoo.co.uk",
+    "outlook.com",
+    "hotmail.com",
+    "live.com",
+    "msn.com",
+    "icloud.com",
+    "me.com",
+    "mac.com",
+    "proton.me",
+    "protonmail.com",
+    "zoho.com",
+    "zoho.in",
+    "aol.com",
+    "ymail.com",
+    "mail.com",
+    "gmx.com",
+}
+
 # Common domain typos
 COMMON_TYPOS = {
     "gmai.com": "gmail.com",
@@ -76,7 +100,8 @@ def verify_email_address(
         return False, str(e), None, "INVALID_SYNTAX"
 
     # 4. Deliverability / MX check (if enabled)
-    if check_mx:
+    # Fast path: Skip network DNS query for known reliable global email providers
+    if check_mx and domain not in MAJOR_TRUSTED_DOMAINS:
         try:
             valid_mx = validate_email(normalized, check_deliverability=True)
             normalized = valid_mx.normalized

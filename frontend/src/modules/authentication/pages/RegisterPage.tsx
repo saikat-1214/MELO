@@ -84,40 +84,45 @@ export const RegisterPage: React.FC = () => {
 
   // Real-time pre-flight deliverability & availability check via backend
   useEffect(() => {
-    if (!emailValue.includes('@') || !emailValue.includes('.')) {
+    const trimmed = emailValue.trim();
+    // Only check if it looks like a complete email address
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(trimmed)) {
       setEmailCheckResult(null);
-      return;
-    }
-
-    const parts = emailValue.split('@');
-    if (parts.length !== 2 || !parts[1].includes('.')) {
-      setEmailCheckResult(null);
+      setIsCheckingEmail(false);
       return;
     }
 
     let isMounted = true;
-    setIsCheckingEmail(true);
+    const controller = new AbortController();
 
+    // Quiet debounce: don't flag as checking until after user finishes typing
     const timer = setTimeout(async () => {
       try {
+        setIsCheckingEmail(true);
         const res = await apiClient.get<EmailCheckResponse>('/auth/check-email', {
-          params: { email: emailValue.trim() },
+          params: { email: trimmed },
+          signal: controller.signal,
         });
         if (isMounted) {
           setEmailCheckResult(res.data);
         }
-      } catch (err) {
-        console.warn('Email check error:', err);
+      } catch (err: any) {
+        if (err?.name !== 'CanceledError' && err?.name !== 'AbortError') {
+          console.warn('Email check error:', err);
+        }
       } finally {
         if (isMounted) {
           setIsCheckingEmail(false);
         }
       }
-    }, 450);
+    }, 350);
 
     return () => {
       isMounted = false;
+      controller.abort();
       clearTimeout(timer);
+      setIsCheckingEmail(false);
     };
   }, [emailValue]);
 
@@ -375,14 +380,14 @@ export const RegisterPage: React.FC = () => {
 
               {isCheckingEmail && (
                 <span className="text-[10px] text-slate-400 flex items-center gap-1">
-                  <Loader2 className="h-3 w-3 animate-spin text-emerald-600" />
-                  Testing deliverability...
+                  <Loader2 className="h-2.5 w-2.5 animate-spin text-emerald-600" />
+                  Checking...
                 </span>
               )}
 
               {!isCheckingEmail && emailCheckResult?.is_valid && emailCheckResult.is_available && (
                 <span className="text-[11px] font-semibold text-emerald-600 flex items-center gap-1">
-                  <CheckCircle2 className="h-3 w-3" /> Valid &amp; Deliverable
+                  <CheckCircle2 className="h-3 w-3" /> Valid email
                 </span>
               )}
 
