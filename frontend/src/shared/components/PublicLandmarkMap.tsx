@@ -34,7 +34,7 @@ export const PublicLandmarkMap: React.FC<PublicLandmarkMapProps> = ({ activities
       {/* Map Header with Safety Guarantee */}
       <div className="absolute top-4 left-4 right-4 z-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-slate-950/80 backdrop-blur-md p-3.5 rounded-2xl border border-white/10">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="h-4 w-4 text-emerald-400" />
+          <ShieldCheck className="h-4 w-4 text-[#D4B5F5]" />
           <span className="text-xs font-bold text-white">Public Landmarks Only</span>
           <span className="text-slate-400 text-xs">•</span>
           <span className="text-[11px] text-slate-300">
@@ -42,26 +42,26 @@ export const PublicLandmarkMap: React.FC<PublicLandmarkMapProps> = ({ activities
           </span>
         </div>
 
-        <span className="rounded-full bg-emerald-500/20 px-3 py-0.5 text-[10px] font-extrabold text-emerald-300 border border-emerald-500/30">
+        <span className="rounded-full bg-[#7137A8]/25 px-3 py-0.5 text-[10px] font-extrabold text-[#D4B5F5] border border-[#7137A8]/40">
           Geospatial View
         </span>
       </div>
 
       {/* Styled Map Grid Surface */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-slate-950 via-slate-900 to-emerald-950/60 opacity-95">
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#190824] via-[#2A0E3D] to-[#321044]/90 opacity-95">
         {/* SVG Grid Lines */}
-        <svg className="w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+        <svg className="w-full h-full opacity-25" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#10b981" strokeWidth="0.8" />
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#7137A8" strokeWidth="0.8" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
 
         {/* Ambient Map Contours & Roads simulation */}
-        <div className="absolute top-1/4 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500/10 via-emerald-500/30 to-teal-500/10 transform -rotate-12 blur-[1px]" />
-        <div className="absolute top-0 bottom-0 left-1/3 w-1 bg-gradient-to-b from-indigo-500/10 via-indigo-500/30 to-emerald-500/10 transform rotate-6 blur-[1px]" />
+        <div className="absolute top-1/4 left-0 right-0 h-1 bg-gradient-to-r from-[#7137A8]/10 via-[#9B51CA]/30 to-[#FF9B32]/10 transform -rotate-12 blur-[1px]" />
+        <div className="absolute top-0 bottom-0 left-1/3 w-1 bg-gradient-to-b from-[#7137A8]/10 via-[#9B51CA]/30 to-[#7137A8]/10 transform rotate-6 blur-[1px]" />
       </div>
 
       {/* Activity Landmark Pins */}
@@ -79,7 +79,7 @@ export const PublicLandmarkMap: React.FC<PublicLandmarkMapProps> = ({ activities
             >
               {/* Pulse ripple */}
               <div
-                className={`absolute -inset-3 rounded-full bg-emerald-400 opacity-40 animate-ping pointer-events-none ${
+                className={`absolute -inset-3 rounded-full bg-[#9B51CA] opacity-40 animate-ping pointer-events-none ${
                   isSelected ? 'scale-150 opacity-70' : ''
                 }`}
               />
@@ -88,8 +88,8 @@ export const PublicLandmarkMap: React.FC<PublicLandmarkMapProps> = ({ activities
               <div
                 className={`relative flex items-center gap-1.5 rounded-2xl px-3 py-1.5 shadow-xl transition-all duration-200 border ${
                   isSelected
-                    ? 'bg-emerald-500 text-white border-white scale-110 shadow-emerald-500/50'
-                    : 'bg-slate-900 text-slate-100 border-emerald-500/50 hover:bg-emerald-600 hover:text-white hover:scale-105'
+                    ? 'bg-gradient-to-r from-[#7137A8] to-[#9B51CA] text-white border-white scale-110 shadow-[#7137A8]/50'
+                    : 'bg-[#240C33] text-slate-100 border-[#7137A8]/50 hover:bg-[#7137A8] hover:text-white hover:scale-105'
                 }`}
               >
                 <span className="text-sm">{act.category.icon}</span>
@@ -105,10 +105,10 @@ export const PublicLandmarkMap: React.FC<PublicLandmarkMapProps> = ({ activities
       {/* Interactive Selected Outing Popup Card */}
       {selectedActivity && (
         <div className="absolute bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:max-w-md z-30 animate-in slide-in-from-bottom duration-200">
-          <div className="rounded-3xl border border-slate-700 bg-slate-900/95 backdrop-blur-md p-5 shadow-2xl text-white space-y-3">
+          <div className="rounded-3xl border border-[#7137A8]/40 bg-[#240C33]/95 backdrop-blur-md p-5 shadow-2xl text-white space-y-3">
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-2">
-                <span className="rounded-xl bg-white/10 px-2.5 py-0.5 text-xs font-bold text-emerald-300">
+                <span className="rounded-xl bg-white/10 px-2.5 py-0.5 text-xs font-bold text-[#D4B5F5]">
                   {selectedActivity.category.icon} {selectedActivity.category.name}
                 </span>
                 <span className="text-xs text-slate-400 font-medium">
@@ -128,7 +128,7 @@ export const PublicLandmarkMap: React.FC<PublicLandmarkMapProps> = ({ activities
                 {selectedActivity.title}
               </h4>
               <p className="text-xs text-slate-300 flex items-center gap-1.5">
-                <MapPin className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                <MapPin className="h-3.5 w-3.5 text-[#FF9B32] shrink-0" />
                 <span className="truncate">{selectedActivity.location_landmark} ({selectedActivity.city})</span>
               </p>
             </div>
@@ -139,7 +139,7 @@ export const PublicLandmarkMap: React.FC<PublicLandmarkMapProps> = ({ activities
               </span>
               <Link
                 to={`/activities/${selectedActivity.id}`}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-emerald-600 transition shadow-sm"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#7137A8] to-[#9B51CA] hover:from-[#5F2D8E] hover:to-[#7137A8] px-3.5 py-1.5 text-xs font-bold text-white transition shadow-sm"
               >
                 <span>View Details</span>
                 <ArrowRight className="h-3 w-3" />

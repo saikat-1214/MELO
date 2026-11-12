@@ -4,38 +4,38 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-800 antialiased;
+    @apply bg-[#F7F7F2] text-[#26232B] antialiased;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 }
 
 @layer utilities {
   .glass-card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(226, 232, 240, 0.8);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(232, 231, 226, 0.8);
   }
   
   .glass-card-dark {
-    background: rgba(15, 23, 42, 0.85);
+    background: rgba(50, 16, 68, 0.85);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(51, 65, 85, 0.5);
+    border: 1px solid rgba(113, 55, 168, 0.3);
   }
 
   .text-gradient-brand {
-    background: linear-gradient(135deg, #059669 0%, #10b981 50%, #4ade80 100%);
+    background: linear-gradient(135deg, #7137A8 0%, #9B51CA 50%, #FF9B32 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .text-gradient-sunset {
-    background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #e11d48 100%);
+    background: linear-gradient(135deg, #FF9B32 0%, #F28B20 50%, #E6821F 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  .text-gradient-indigo {
-    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #8b5cf6 100%);
+  .text-gradient-purple {
+    background: linear-gradient(135deg, #321044 0%, #7137A8 50%, #9B51CA 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

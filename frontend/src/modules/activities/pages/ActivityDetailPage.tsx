@@ -170,7 +170,7 @@ export const ActivityDetailPage: React.FC = () => {
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center py-24 space-y-4">
-        <Loader2 className="h-8 w-8 text-emerald-600 animate-spin" />
+        <Loader2 className="h-8 w-8 text-[#7137A8] animate-spin" />
         <p className="text-sm text-slate-500 font-medium">Loading activity details...</p>
       </div>
     );
@@ -227,12 +227,12 @@ export const ActivityDetailPage: React.FC = () => {
 
       {/* Notifications */}
       {actionSuccess && (
-        <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-xs font-semibold text-emerald-800 flex items-center justify-between">
+        <div className="rounded-2xl bg-[#F1EAF8] border border-[#7137A8]/30 p-4 text-xs font-semibold text-[#321044] flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
+            <CheckCircle2 className="h-4 w-4 text-[#7137A8] shrink-0" />
             <span>{actionSuccess}</span>
           </div>
-          <button onClick={() => setActionSuccess(null)} className="text-emerald-700 hover:text-emerald-900">
+          <button onClick={() => setActionSuccess(null)} className="text-[#7137A8] hover:text-[#5F2D8E]">
             &times;
           </button>
         </div>
@@ -251,7 +251,7 @@ export const ActivityDetailPage: React.FC = () => {
       )}
 
       {/* Main Activity Header Card */}
-      <div className="rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-10 shadow-soft space-y-6">
+      <div className="rounded-3xl border border-[#E8E7E2] bg-white p-6 sm:p-10 shadow-soft space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <span className="rounded-xl bg-slate-100 px-3 py-1 text-xs font-bold text-slate-800">
@@ -260,7 +260,7 @@ export const ActivityDetailPage: React.FC = () => {
             <span
               className={`rounded-xl px-3 py-1 text-xs font-bold ${
                 activity.status === 'PUBLISHED'
-                  ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                  ? 'bg-[#F1EAF8] text-[#7137A8] border border-[#7137A8]/30'
                   : activity.status === 'FULL'
                   ? 'bg-amber-50 text-amber-700 border border-amber-200'
                   : 'bg-rose-50 text-rose-700 border border-rose-200'
@@ -272,7 +272,7 @@ export const ActivityDetailPage: React.FC = () => {
 
           {/* City Badge */}
           <div className="flex items-center gap-1.5 text-xs font-bold text-slate-600">
-            <MapPin className="h-4 w-4 text-emerald-600" />
+            <MapPin className="h-4 w-4 text-[#7137A8]" />
             <span>{activity.city}</span>
           </div>
         </div>
@@ -293,10 +293,10 @@ export const ActivityDetailPage: React.FC = () => {
 
               {/* Multi-Stop Itinerary Timeline */}
               {stops.length > 0 && (
-                <div className="rounded-2xl border border-emerald-100 bg-gradient-to-br from-emerald-50/50 via-white to-teal-50/40 p-5 shadow-xs space-y-4">
-                  <div className="flex items-center justify-between border-b border-emerald-100 pb-3">
+                <div className="rounded-2xl border border-[#7137A8]/20 bg-gradient-to-br from-[#F1EAF8]/40 via-white to-[#FFF1E3]/30 p-5 shadow-xs space-y-4">
+                  <div className="flex items-center justify-between border-b border-[#7137A8]/15 pb-3">
                     <div className="flex items-center gap-2">
-                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-xs">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#7137A8] text-white shadow-xs">
                         <Route className="h-4 w-4" />
                       </div>
                       <div>
@@ -310,20 +310,20 @@ export const ActivityDetailPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="relative pl-6 space-y-4 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-emerald-200">
+                  <div className="relative pl-6 space-y-4 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-[#7137A8]/30">
                     {stops.map((stop) => (
                       <div key={stop.step} className="relative flex items-start gap-3 group">
-                        <span className="absolute -left-6 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-600 text-white text-[10px] font-bold ring-4 ring-white shadow-xs">
+                        <span className="absolute -left-6 flex h-5 w-5 items-center justify-center rounded-full bg-[#7137A8] text-white text-[10px] font-bold ring-4 ring-white shadow-xs">
                           {stop.step}
                         </span>
                         <div className="flex-1 bg-white/80 rounded-xl border border-slate-100 p-3 shadow-2xs space-y-1">
                           <div className="flex items-center justify-between flex-wrap gap-1">
                             <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                              <MapPin className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
+                              <MapPin className="h-3.5 w-3.5 text-[#7137A8] shrink-0" />
                               {stop.name}
                             </span>
                             {stop.time && (
-                              <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
+                              <span className="inline-flex items-center gap-1 rounded-md bg-[#F1EAF8] px-2 py-0.5 text-[10px] font-bold text-[#7137A8]">
                                 <Clock className="h-3 w-3" />
                                 {stop.time}
                               </span>
@@ -345,17 +345,17 @@ export const ActivityDetailPage: React.FC = () => {
         })()}
 
         {/* Public Landmark Safety Banner */}
-        <div className="rounded-2xl bg-emerald-50/70 border border-emerald-200/80 p-4 flex items-start gap-3.5">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm">
+        <div className="rounded-2xl bg-[#F1EAF8]/70 border border-[#7137A8]/30 p-4 flex items-start gap-3.5">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#7137A8] text-white shadow-sm">
             <ShieldCheck className="h-5 w-5" />
           </div>
           <div className="space-y-1">
-            <p className="text-xs font-bold text-emerald-900 flex items-center gap-1.5">
+            <p className="text-xs font-bold text-[#321044] flex items-center gap-1.5">
               <span>Verified Public Meeting Landmark:</span>
-              <span className="underline decoration-emerald-400">{activity.location_landmark}</span>
+              <span className="underline decoration-[#7137A8]/40">{activity.location_landmark}</span>
             </p>
-            <p className="text-[11px] text-emerald-700 leading-relaxed">
-              For mutual safety, all SocialConnect meetups are anchored at public landmarks. Never agree to meet at private residences or secluded locations.
+            <p className="text-[11px] text-[#55545C] leading-relaxed">
+              For mutual safety, all MELO meetups are anchored at public landmarks. Never agree to meet at private residences or secluded locations.
             </p>
           </div>
         </div>
@@ -364,7 +364,7 @@ export const ActivityDetailPage: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
           <div className="rounded-2xl border border-slate-100 bg-slate-50/80 p-4 space-y-1">
             <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
-              <Calendar className="h-4 w-4 text-emerald-600" />
+              <Calendar className="h-4 w-4 text-[#7137A8]" />
               <span>Date</span>
             </div>
             <p className="text-sm font-bold text-slate-900">{schedule.dateFormatted}</p>
@@ -372,7 +372,7 @@ export const ActivityDetailPage: React.FC = () => {
 
           <div className="rounded-2xl border border-slate-100 bg-slate-50/80 p-4 space-y-1">
             <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
-              <Clock className="h-4 w-4 text-emerald-600" />
+              <Clock className="h-4 w-4 text-[#7137A8]" />
               <span>Time</span>
             </div>
             <p className="text-sm font-bold text-slate-900">{schedule.timeRange}</p>
@@ -381,7 +381,7 @@ export const ActivityDetailPage: React.FC = () => {
           <div className="rounded-2xl border border-slate-100 bg-slate-50/80 p-4 space-y-1 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
               <span className="flex items-center gap-2">
-                <Users className="h-4 w-4 text-emerald-600" />
+                <Users className="h-4 w-4 text-[#7137A8]" />
                 <span>Group Size</span>
               </span>
               <span className="font-bold text-slate-700">
@@ -390,7 +390,7 @@ export const ActivityDetailPage: React.FC = () => {
             </div>
             <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200 mt-2">
               <div
-                className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300"
+                className="h-full bg-gradient-to-r from-[#7137A8] via-[#8541C5] to-[#FF9B32] transition-all duration-300"
                 style={{
                   width: `${Math.min(100, (activity.participant_count / activity.max_participants) * 100)}%`,
                 }}
@@ -409,14 +409,14 @@ export const ActivityDetailPage: React.FC = () => {
             <div className="flex items-center justify-between border-b border-slate-100 pb-4">
               <div>
                 <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                  <UserCheck className="h-5 w-5 text-emerald-600" />
+                  <UserCheck className="h-5 w-5 text-[#7137A8]" />
                   Confirmed Participants ({activity.participants.length})
                 </h3>
                 <p className="text-xs text-slate-500 mt-0.5">
                   Companions attending this outing
                 </p>
               </div>
-              <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">
+              <span className="rounded-full bg-[#F1EAF8] px-3 py-1 text-xs font-bold text-[#7137A8]">
                 {activity.spots_left} spot{activity.spots_left === 1 ? '' : 's'} remaining
               </span>
             </div>
@@ -427,7 +427,7 @@ export const ActivityDetailPage: React.FC = () => {
                   key={p.id}
                   className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50/70 p-3.5 transition hover:bg-slate-50"
                 >
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-sm font-black text-white shadow-sm">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-[#7137A8] to-[#9B51CA] text-sm font-black text-white shadow-sm">
                     {p.avatar_url ? (
                       <img src={p.avatar_url} alt={p.display_name} className="h-full w-full rounded-xl object-cover" />
                     ) : (
@@ -438,7 +438,7 @@ export const ActivityDetailPage: React.FC = () => {
                     <div className="flex items-center gap-1.5">
                       <p className="text-xs font-bold text-slate-900 truncate">{p.display_name}</p>
                       {p.role === 'HOST' && (
-                        <span className="rounded-md bg-emerald-100 px-1.5 py-0.5 text-[10px] font-bold text-emerald-800">
+                        <span className="rounded-md bg-[#F1EAF8] px-1.5 py-0.5 text-[10px] font-bold text-[#7137A8]">
                           Host
                         </span>
                       )}
@@ -457,7 +457,7 @@ export const ActivityDetailPage: React.FC = () => {
             <h3 className="text-lg font-bold text-slate-900">Outing Guidelines &amp; Expectations</h3>
             <p className="text-xs text-slate-600 leading-relaxed whitespace-pre-line">
               {activity.rules ||
-                '1. Arrive on time at the designated public landmark.\n2. Respect all attendees — SocialConnect is strictly for platonic friendship and shared experiences.\n3. Keep group communication transparent.'}
+                '1. Arrive on time at the designated public landmark.\n2. Respect all attendees — MELO is strictly for platonic friendship and shared experiences.\n3. Keep group communication transparent.'}
             </p>
           </div>
         </div>
@@ -471,7 +471,7 @@ export const ActivityDetailPage: React.FC = () => {
             </span>
 
             <div className="flex items-center gap-3.5">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-tr from-slate-900 to-slate-700 text-lg font-black text-white shadow-md">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#321044] to-[#7137A8] text-lg font-black text-white shadow-md">
                 {activity.host.avatar_url ? (
                   <img
                     src={activity.host.avatar_url}
@@ -488,7 +488,7 @@ export const ActivityDetailPage: React.FC = () => {
                   {activity.host.general_location}
                   {activity.host.age ? ` • ${activity.host.age} yrs` : ''}
                 </p>
-                <span className="inline-block mt-1 rounded-md bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
+                <span className="inline-block mt-1 rounded-md bg-[#F1EAF8] px-2 py-0.5 text-[10px] font-bold text-[#7137A8]">
                   Verified Host
                 </span>
               </div>
@@ -509,19 +509,19 @@ export const ActivityDetailPage: React.FC = () => {
 
             {isHost ? (
               <div className="space-y-3">
-                <div className="rounded-2xl bg-slate-900 text-white p-4 space-y-1">
-                  <p className="text-xs font-bold flex items-center gap-1.5">
-                    <Sparkles className="h-4 w-4 text-amber-300" />
+                <div className="rounded-2xl bg-[#321044] text-white p-4 space-y-1 shadow-md">
+                  <p className="text-xs font-bold flex items-center gap-1.5 text-[#FF9B32]">
+                    <Sparkles className="h-4 w-4 text-[#FF9B32]" />
                     You are the Host
                   </p>
-                  <p className="text-[11px] text-slate-300">
+                  <p className="text-[11px] text-[#F1EAF8]">
                     Review join requests and manage your participants.
                   </p>
                 </div>
 
                 <button
                   onClick={() => setIsRequestsModalOpen(true)}
-                  className="w-full flex items-center justify-between rounded-2xl bg-emerald-600 px-4 py-3 text-xs font-bold text-white shadow-md hover:bg-emerald-700 transition"
+                  className="w-full flex items-center justify-between rounded-2xl bg-gradient-to-r from-[#7137A8] to-[#9B51CA] px-4 py-3 text-xs font-bold text-white shadow-md shadow-[#7137A8]/25 hover:from-[#5F2D8E] hover:to-[#7137A8] transition"
                 >
                   <span>Review Join Requests</span>
                   <span className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-extrabold">
@@ -546,12 +546,12 @@ export const ActivityDetailPage: React.FC = () => {
               </div>
             ) : activity.viewer_status === 'MEMBER' ? (
               <div className="space-y-3">
-                <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-4 space-y-1 text-emerald-900">
-                  <p className="text-xs font-bold flex items-center gap-1.5">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                <div className="rounded-2xl bg-[#F1EAF8] border border-[#7137A8]/30 p-4 space-y-1 text-[#321044]">
+                  <p className="text-xs font-bold flex items-center gap-1.5 text-[#7137A8]">
+                    <CheckCircle2 className="h-4 w-4 text-[#7137A8]" />
                     Confirmed Companion
                   </p>
-                  <p className="text-[11px] text-emerald-700">
+                  <p className="text-[11px] text-[#55545C]">
                     You are attending this activity. Meet at the designated landmark on time!
                   </p>
                 </div>
@@ -584,7 +584,7 @@ export const ActivityDetailPage: React.FC = () => {
                 {activity.spots_left > 0 && activity.status === 'PUBLISHED' ? (
                   <button
                     onClick={() => setIsJoinModalOpen(true)}
-                    className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 px-5 py-3 text-xs font-bold text-white shadow-md shadow-emerald-600/25 hover:from-emerald-700 hover:to-teal-700 active:scale-95 transition"
+                    className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#7137A8] via-[#8541C5] to-[#9B51CA] px-5 py-3.5 text-xs font-bold text-white shadow-md shadow-[#7137A8]/25 hover:from-[#5F2D8E] hover:to-[#7137A8] active:scale-95 transition"
                   >
                     <Send className="h-4 w-4" />
                     Request to Join ({activity.spots_left} spots left)
@@ -652,7 +652,7 @@ export const ActivityDetailPage: React.FC = () => {
               value={joinNote}
               onChange={(e) => setJoinNote(e.target.value)}
               placeholder="e.g. Hi! I love football and play regularly. Would love to join the 5-a-side friendly!"
-              className="w-full rounded-2xl border border-slate-300 p-3 text-xs placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+              className="w-full rounded-2xl border border-slate-300 p-3 text-xs placeholder:text-slate-400 focus:border-[#7137A8] focus:outline-none focus:ring-2 focus:ring-[#7137A8]/20"
             />
 
             <div className="flex items-center justify-end gap-2 pt-2">
@@ -667,7 +667,7 @@ export const ActivityDetailPage: React.FC = () => {
                 type="button"
                 onClick={() => joinMutation.mutate(joinNote)}
                 disabled={joinMutation.isPending}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-5 py-2 text-xs font-bold text-white hover:bg-emerald-700 transition"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#7137A8] to-[#9B51CA] px-5 py-2 text-xs font-bold text-white hover:from-[#5F2D8E] hover:to-[#7137A8] transition"
               >
                 {joinMutation.isPending && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
                 Submit Request
@@ -728,7 +728,7 @@ export const ActivityDetailPage: React.FC = () => {
                           req.status === 'PENDING'
                             ? 'bg-amber-100 text-amber-800'
                             : req.status === 'ACCEPTED'
-                            ? 'bg-emerald-100 text-emerald-800'
+                            ? 'bg-[#F1EAF8] text-[#7137A8]'
                             : 'bg-rose-100 text-rose-800'
                         }`}
                       >
@@ -778,7 +778,7 @@ export const ActivityDetailPage: React.FC = () => {
                             })
                           }
                           disabled={decisionMutation.isPending}
-                          className="inline-flex items-center gap-1 rounded-xl bg-emerald-600 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-emerald-700 transition"
+                          className="inline-flex items-center gap-1 rounded-xl bg-gradient-to-r from-[#7137A8] to-[#9B51CA] px-3.5 py-1.5 text-xs font-bold text-white hover:from-[#5F2D8E] hover:to-[#7137A8] transition"
                         >
                           <CheckCircle2 className="h-3.5 w-3.5" />
                           Approve Companion

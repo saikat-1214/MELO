@@ -89,7 +89,7 @@ export const ProfilePage: React.FC = () => {
       <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <div className="h-16 w-16 rounded-2xl bg-gradient-to-tr from-brand-600 to-teal-400 text-white flex items-center justify-center font-bold text-2xl shadow-sm">
+            <div className="h-16 w-16 rounded-2xl bg-gradient-to-tr from-[#7137A8] to-[#9B51CA] text-white flex items-center justify-center font-bold text-2xl shadow-sm">
               {profile.display_name.charAt(0).toUpperCase()}
             </div>
             <div>
@@ -181,7 +181,7 @@ export const ProfilePage: React.FC = () => {
             {profile.availability.map((slot, idx) => (
               <div
                 key={idx}
-                className="rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-1.5 text-xs text-emerald-800 font-medium"
+                className="rounded-lg bg-[#F1EAF8] border border-[#7137A8]/20 px-3 py-1.5 text-xs text-[#7137A8] font-medium"
               >
                 {daysOfWeek[slot.day_of_week]}: {slot.time_slot}
               </div>
@@ -216,7 +216,7 @@ export const ProfilePage: React.FC = () => {
               <h4 className="text-base font-bold text-slate-900">Confirm Deactivation</h4>
             </div>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Are you sure you want to deactivate your SocialConnect account? You will be signed out immediately and your profile will be hidden from other members.
+              Are you sure you want to deactivate your MELO account? You will be signed out immediately and your profile will be hidden from other members.
             </p>
             <div className="flex items-center justify-end gap-3 pt-2">
               <button

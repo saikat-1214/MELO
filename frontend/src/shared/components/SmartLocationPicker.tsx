@@ -457,12 +457,12 @@ export const SmartLocationPicker: React.FC<SmartLocationPickerProps> = ({
                 pinStatus === 'mismatch' || pinStatus === 'invalid'
                   ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-500/20 bg-rose-50/20'
                   : pinStatus === 'valid'
-                  ? 'border-emerald-400 focus:border-emerald-500 focus:ring-emerald-500/20 bg-emerald-50/20'
-                  : 'border-slate-300 focus:border-brand-500 focus:ring-brand-500/20'
+                  ? 'border-[#7137A8]/50 focus:border-[#7137A8] focus:ring-[#7137A8]/20 bg-[#F1EAF8]/40'
+                  : 'border-slate-300 focus:border-[#7137A8] focus:ring-[#7137A8]/20'
               }`}
             />
             {pinStatus === 'valid' && (
-              <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-emerald-600" />
+              <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#7137A8]" />
             )}
             {(pinStatus === 'mismatch' || pinStatus === 'invalid') && (
               <AlertTriangle className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-rose-500" />
@@ -471,8 +471,8 @@ export const SmartLocationPicker: React.FC<SmartLocationPickerProps> = ({
 
           {/* Verification Status Tag */}
           {pinStatus === 'valid' && pinFeedback && (
-            <p className="text-[11px] font-medium text-emerald-700 mt-1 flex items-center gap-1">
-              <Check className="h-3 w-3 text-emerald-600 shrink-0" />
+            <p className="text-[11px] font-medium text-[#7137A8] mt-1 flex items-center gap-1">
+              <Check className="h-3 w-3 text-[#7137A8] shrink-0" />
               <span>{pinFeedback}</span>
             </p>
           )}
@@ -480,13 +480,13 @@ export const SmartLocationPicker: React.FC<SmartLocationPickerProps> = ({
 
         {/* Formatted Preview Badge */}
         <div className="flex flex-col justify-end">
-          <div className="rounded-xl border border-emerald-200/80 bg-emerald-50/60 p-2.5 flex items-start gap-2">
-            <MapPin className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+          <div className="rounded-xl border border-[#7137A8]/30 bg-[#F1EAF8]/70 p-2.5 flex items-start gap-2 shadow-xs">
+            <MapPin className="h-4 w-4 text-[#7137A8] shrink-0 mt-0.5" />
             <div className="space-y-0.5">
-              <span className="text-[10px] font-bold text-emerald-900 uppercase tracking-wider block">
+              <span className="text-[10px] font-bold text-[#7137A8] uppercase tracking-wider block">
                 Selected Regional Locality:
               </span>
-              <p className="text-xs font-semibold text-emerald-800 break-words leading-tight">
+              <p className="text-xs font-semibold text-[#321044] break-words leading-tight">
                 {city || district || state ? (
                   `${city ? city + ', ' : ''}${district ? district + ', ' : ''}${state ? state : ''}${pincode ? ' - ' + pincode : ''}`
                 ) : (

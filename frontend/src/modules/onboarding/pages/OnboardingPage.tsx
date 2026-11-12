@@ -186,7 +186,7 @@ export const OnboardingPage: React.FC = () => {
         return;
       }
       if (currentAge === null || currentAge < 18) {
-        setErrorMsg('You must be at least 18 years old to join SocialConnect.');
+        setErrorMsg('You must be at least 18 years old to join MELO.');
         return;
       }
     } else if (step === 2) {
@@ -468,8 +468,8 @@ export const OnboardingPage: React.FC = () => {
                 {currentAge !== null && (
                   <div className="mt-1.5 flex items-center gap-1.5 text-xs">
                     {currentAge >= 18 ? (
-                      <span className="text-emerald-700 font-semibold flex items-center gap-1">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" /> Age: {currentAge} (Eligible)
+                      <span className="text-[#7137A8] font-bold flex items-center gap-1">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-[#7137A8]" /> Age: {currentAge} (Eligible)
                       </span>
                     ) : (
                       <span className="text-rose-600 font-semibold flex items-center gap-1">
@@ -544,10 +544,10 @@ export const OnboardingPage: React.FC = () => {
                           setSelectedLanguages((prev) => [...prev, lang]);
                         }
                       }}
-                      className={`rounded-lg px-3 py-1.5 text-xs font-medium transition ${
+                      className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
                         isSelected
-                          ? 'bg-brand-600 text-white shadow-sm'
-                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                          ? 'bg-gradient-to-r from-[#7137A8] to-[#9B51CA] text-white shadow-sm'
+                          : 'bg-slate-100 text-slate-700 hover:bg-[#F1EAF8] hover:text-[#7137A8]'
                       }`}
                     >
                       {lang}
@@ -575,7 +575,7 @@ export const OnboardingPage: React.FC = () => {
               <span
                 className={`text-xs font-semibold px-2.5 py-1 rounded-full shrink-0 transition ${
                   Object.keys(selectedInterests).length > 0
-                    ? 'bg-emerald-100 text-emerald-800'
+                    ? 'bg-[#F1EAF8] text-[#7137A8] font-bold border border-[#7137A8]/30'
                     : 'bg-slate-100 text-slate-500'
                 }`}
               >
@@ -587,7 +587,7 @@ export const OnboardingPage: React.FC = () => {
 
             {isInterestsLoading ? (
               <div className="flex justify-center py-8">
-                <Loader2 className="h-6 w-6 animate-spin text-brand-600" />
+                <Loader2 className="h-6 w-6 animate-spin text-[#7137A8]" />
               </div>
             ) : categorizedInterests.length === 0 ? (
               <div className="rounded-xl border border-dashed border-slate-200 p-6 text-center text-xs text-slate-500">
@@ -620,15 +620,15 @@ export const OnboardingPage: React.FC = () => {
                             onClick={() => toggleInterest(item.id)}
                             className={`w-full flex items-center justify-between rounded-xl border p-3 text-left transition ${
                               isSelected
-                                ? 'border-emerald-500 bg-emerald-50/70 shadow-sm ring-1 ring-emerald-500/30'
-                                : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/50'
+                                ? 'border-[#7137A8] bg-[#F1EAF8] shadow-sm ring-1 ring-[#7137A8]/30'
+                                : 'border-slate-200 bg-white hover:border-[#7137A8]/40 hover:bg-[#F1EAF8]/40'
                             }`}
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
                               <span className="text-lg shrink-0">{emoji}</span>
                               <span
                                 className={`text-xs font-medium truncate ${
-                                  isSelected ? 'text-emerald-950 font-semibold' : 'text-slate-800'
+                                  isSelected ? 'text-[#321044] font-bold' : 'text-slate-800'
                                 }`}
                               >
                                 {item.name}
@@ -636,7 +636,7 @@ export const OnboardingPage: React.FC = () => {
                             </div>
                             <div className="shrink-0 ml-2">
                               {isSelected ? (
-                                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                                <CheckCircle2 className="h-4 w-4 text-[#7137A8]" />
                               ) : (
                                 <div className="h-4 w-4 rounded-full border border-slate-300" />
                               )}
@@ -734,7 +734,7 @@ export const OnboardingPage: React.FC = () => {
             <button
               type="button"
               onClick={handleNext}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-brand-600 px-5 py-2 text-xs font-semibold text-white shadow hover:bg-brand-700 transition"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#7137A8] via-[#8541C5] to-[#9B51CA] px-6 py-2.5 text-xs font-bold text-white shadow-md shadow-[#7137A8]/25 hover:from-[#5F2D8E] hover:to-[#7137A8] transition"
             >
               Next
               <ArrowRight className="h-4 w-4" />
@@ -744,7 +744,7 @@ export const OnboardingPage: React.FC = () => {
               type="button"
               disabled={isSubmitting}
               onClick={handleFinish}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-6 py-2.5 text-xs font-bold text-white shadow hover:bg-emerald-700 disabled:opacity-50 transition"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#7137A8] via-[#8541C5] to-[#9B51CA] px-6 py-2.5 text-xs font-bold text-white shadow-lg shadow-[#7137A8]/25 hover:from-[#5F2D8E] hover:to-[#7137A8] disabled:opacity-50 transition"
             >
               {isSubmitting ? (
                 <Loader2 className="h-4 w-4 animate-spin" />

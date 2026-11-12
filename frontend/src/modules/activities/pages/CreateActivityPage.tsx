@@ -43,7 +43,7 @@ export const CreateActivityPage: React.FC = () => {
   const [endTime, setEndTime] = useState('');
   const [capacity, setCapacity] = useState<number>(6);
   const [rules, setRules] = useState(
-    'Be punctual at the public meeting point. Respect all community members. SocialConnect is strictly for platonic companionship.'
+    'Be punctual at the public meeting point. Respect all community members. MELO is strictly for platonic companionship.'
   );
   const [agreedToGuidelines, setAgreedToGuidelines] = useState(false);
 
@@ -274,13 +274,13 @@ export const CreateActivityPage: React.FC = () => {
   return (
     <div className="max-w-3xl mx-auto py-6 space-y-8">
       {/* Page Header */}
-      <div className="border-b border-slate-200/80 pb-5">
-        <div className="inline-flex items-center gap-2 text-emerald-600 text-xs font-bold uppercase tracking-wider mb-1">
+      <div className="border-b border-[#E8E7E2] pb-5">
+        <div className="inline-flex items-center gap-2 text-[#7137A8] text-xs font-bold uppercase tracking-wider mb-1">
           <Sparkles className="h-4 w-4" />
           Lead a Community Meetup
         </div>
-        <h1 className="text-3xl font-extrabold text-slate-900">Host a Real-World Activity</h1>
-        <p className="text-sm text-slate-500 mt-1">
+        <h1 className="text-3xl font-extrabold text-[#26232B]">Host a Real-World Activity</h1>
+        <p className="text-sm text-[#55545C] mt-1">
           Organize an outing for festival visits, sports, treks, or café exploration and connect with companions.
         </p>
       </div>
@@ -318,8 +318,8 @@ export const CreateActivityPage: React.FC = () => {
                 onClick={() => setCategoryId(cat.id)}
                 className={`flex items-center gap-2.5 p-3 rounded-xl border text-left text-xs font-semibold transition-all ${
                   categoryId === cat.id
-                    ? 'border-emerald-600 bg-emerald-50/60 text-emerald-900 shadow-sm ring-2 ring-emerald-500/20'
-                    : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'
+                    ? 'border-[#7137A8] bg-[#F1EAF8] text-[#321044] shadow-sm ring-2 ring-[#7137A8]/20'
+                    : 'border-slate-200 bg-white text-slate-700 hover:border-[#7137A8]/40 hover:bg-[#F1EAF8]/40'
                 }`}
               >
                 <span className="text-base">{cat.icon === 'sparkles' ? '🪔' : cat.icon === 'activity' ? '⚽' : cat.icon === 'compass' ? '🏔️' : cat.icon === 'coffee' ? '☕' : cat.icon === 'gamepad-2' ? '🎮' : '📚'}</span>
@@ -345,7 +345,7 @@ export const CreateActivityPage: React.FC = () => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Durga Puja Pandal Hopping – North Kolkata"
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm focus:border-[#7137A8] focus:outline-none focus:ring-2 focus:ring-[#7137A8]/20"
             />
           </div>
 
@@ -359,7 +359,7 @@ export const CreateActivityPage: React.FC = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Describe the plan, what pandals or spots you'll cover, what to expect, and how the group will explore together..."
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm focus:border-[#7137A8] focus:outline-none focus:ring-2 focus:ring-[#7137A8]/20"
             />
           </div>
 
@@ -388,7 +388,7 @@ export const CreateActivityPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => loadPresetItinerary('photo-walk')}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-50 border border-emerald-200/80 px-3 py-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-100 transition"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-[#F1EAF8] border border-[#7137A8]/30 px-3 py-1.5 text-xs font-semibold text-[#7137A8] hover:bg-[#E2D4F2] transition"
               >
                 <span>📷</span>
                 <span>Riverside Photo Walk</span>
@@ -400,7 +400,7 @@ export const CreateActivityPage: React.FC = () => {
           <div className="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-4 space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Route className="h-4 w-4 text-emerald-600" />
+                <Route className="h-4 w-4 text-[#7137A8]" />
                 <span className="text-xs font-bold text-slate-800">
                   Multi-Stop Itinerary (Festivals, Trails &amp; Crawls)
                 </span>
@@ -413,7 +413,7 @@ export const CreateActivityPage: React.FC = () => {
                   }
                   setShowItineraryBuilder(!showItineraryBuilder);
                 }}
-                className="text-xs font-bold text-emerald-600 hover:text-emerald-700 underline"
+                className="text-xs font-bold text-[#7137A8] hover:text-[#5F2D8E] underline"
               >
                 {showItineraryBuilder ? 'Hide Itinerary' : '+ Add Stops'}
               </button>
@@ -432,7 +432,7 @@ export const CreateActivityPage: React.FC = () => {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-[11px] font-extrabold text-emerald-800">
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#F1EAF8] text-[11px] font-extrabold text-[#7137A8]">
                           {idx + 1}
                         </span>
                         <span className="text-xs font-bold text-slate-700">Stop #{idx + 1}</span>
@@ -453,7 +453,7 @@ export const CreateActivityPage: React.FC = () => {
                           placeholder="Landmark name (e.g. Bagbazar Sarbojanin)"
                           value={stop.name}
                           onChange={(e) => handleUpdateStop(stop.id, 'name', e.target.value)}
-                          className="w-full rounded-lg border border-slate-200 px-3 py-1.5 text-xs focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                          className="w-full rounded-lg border border-slate-200 px-3 py-1.5 text-xs focus:border-[#7137A8] focus:outline-none focus:ring-1 focus:ring-[#7137A8]"
                         />
                       </div>
                       <div>
@@ -464,7 +464,7 @@ export const CreateActivityPage: React.FC = () => {
                             placeholder="e.g. 05:00 PM"
                             value={stop.time}
                             onChange={(e) => handleUpdateStop(stop.id, 'time', e.target.value)}
-                            className="w-full rounded-lg border border-slate-200 pl-8 pr-3 py-1.5 text-xs focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                            className="w-full rounded-lg border border-slate-200 pl-8 pr-3 py-1.5 text-xs focus:border-[#7137A8] focus:outline-none focus:ring-1 focus:ring-[#7137A8]"
                           />
                         </div>
                       </div>
@@ -475,7 +475,7 @@ export const CreateActivityPage: React.FC = () => {
                       placeholder="Highlight / activity note (e.g. Meet at gate, explore traditional idol & dhaak)"
                       value={stop.activityNote}
                       onChange={(e) => handleUpdateStop(stop.id, 'activityNote', e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-3 py-1.5 text-xs text-slate-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                      className="w-full rounded-lg border border-slate-200 px-3 py-1.5 text-xs text-slate-600 focus:border-[#7137A8] focus:outline-none focus:ring-1 focus:ring-[#7137A8]"
                     />
                   </div>
                 ))}
@@ -483,7 +483,7 @@ export const CreateActivityPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleAddStop}
-                  className="w-full flex items-center justify-center gap-1.5 rounded-xl border border-dashed border-emerald-300 bg-emerald-50/50 py-2 text-xs font-bold text-emerald-700 hover:bg-emerald-100/60 transition"
+                  className="w-full flex items-center justify-center gap-1.5 rounded-xl border border-dashed border-[#7137A8]/40 bg-[#F1EAF8]/50 py-2 text-xs font-bold text-[#7137A8] hover:bg-[#F1EAF8] transition"
                 >
                   <Plus className="h-3.5 w-3.5" />
                   Add Another Stop
@@ -512,7 +512,7 @@ export const CreateActivityPage: React.FC = () => {
                   value={generalLocation}
                   onChange={(e) => setGeneralLocation(e.target.value)}
                   placeholder="e.g. North Kolkata"
-                  className="w-full rounded-xl border border-slate-300 bg-white pl-10 pr-4 py-2.5 text-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full rounded-xl border border-slate-300 bg-white pl-10 pr-4 py-2.5 text-sm focus:border-[#7137A8] focus:outline-none focus:ring-2 focus:ring-[#7137A8]/20"
                 />
               </div>
             </div>
@@ -527,7 +527,7 @@ export const CreateActivityPage: React.FC = () => {
                 value={publicMeetingPoint}
                 onChange={(e) => setPublicMeetingPoint(e.target.value)}
                 placeholder="e.g. Shyambazar Five Point Crossing (Metro Gate 1)"
-                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm focus:border-[#7137A8] focus:outline-none focus:ring-2 focus:ring-[#7137A8]/20"
               />
             </div>
           </div>
@@ -549,7 +549,7 @@ export const CreateActivityPage: React.FC = () => {
                 required
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
-                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm focus:border-[#7137A8] focus:outline-none focus:ring-2 focus:ring-[#7137A8]/20"
               />
             </div>
 
@@ -562,7 +562,7 @@ export const CreateActivityPage: React.FC = () => {
                 required
                 value={endTime}
                 onChange={(e) => setEndTime(e.target.value)}
-                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm focus:border-[#7137A8] focus:outline-none focus:ring-2 focus:ring-[#7137A8]/20"
               />
             </div>
           </div>
@@ -570,7 +570,7 @@ export const CreateActivityPage: React.FC = () => {
           <div className="pt-2">
             <div className="flex items-center justify-between mb-1">
               <label className="text-xs font-semibold text-slate-700">
-                Participant Capacity Limit: <span className="text-emerald-700 font-bold">{capacity} members</span>
+                Participant Capacity Limit: <span className="text-[#7137A8] font-bold">{capacity} members</span>
               </label>
               <span className="text-[11px] text-slate-400">Keep small for cohesive groups (2-20)</span>
             </div>
@@ -580,7 +580,7 @@ export const CreateActivityPage: React.FC = () => {
               max={20}
               value={capacity}
               onChange={(e) => setCapacity(parseInt(e.target.value))}
-              className="w-full accent-emerald-600"
+              className="w-full accent-[#7137A8] cursor-pointer"
             />
           </div>
         </div>
@@ -594,7 +594,7 @@ export const CreateActivityPage: React.FC = () => {
             rows={3}
             value={rules}
             onChange={(e) => setRules(e.target.value)}
-            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm focus:border-[#7137A8] focus:outline-none focus:ring-2 focus:ring-[#7137A8]/20"
           />
 
           <label className="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
@@ -602,7 +602,7 @@ export const CreateActivityPage: React.FC = () => {
               type="checkbox"
               checked={agreedToGuidelines}
               onChange={(e) => setAgreedToGuidelines(e.target.checked)}
-              className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 mt-0.5"
+              className="h-4 w-4 rounded border-slate-300 text-[#7137A8] focus:ring-[#7137A8] mt-0.5"
             />
             <span className="text-xs text-slate-700 leading-relaxed">
               I certify that this activity is purely for platonic shared interests and real-world experiences, adheres to public safety rules, and will not be used for commercial solicitation or dating.
@@ -615,7 +615,7 @@ export const CreateActivityPage: React.FC = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-600/25 hover:from-emerald-700 hover:to-teal-700 disabled:opacity-50 transition"
+            className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#7137A8] via-[#8541C5] to-[#9B51CA] py-3.5 text-sm font-bold text-white shadow-lg shadow-[#7137A8]/25 hover:from-[#5F2D8E] hover:to-[#7137A8] active:scale-[0.99] disabled:opacity-50 transition"
           >
             {isSubmitting ? (
               <Loader2 className="h-5 w-5 animate-spin" />

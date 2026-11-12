@@ -63,7 +63,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
 
         {isSuccess ? (
           <div className="py-8 text-center space-y-3">
-            <CheckCircle2 className="mx-auto h-12 w-12 text-emerald-600" />
+            <CheckCircle2 className="mx-auto h-12 w-12 text-[#7137A8]" />
             <h4 className="text-sm font-bold text-slate-900">Report Submitted</h4>
             <p className="text-xs text-slate-500">
               Thank you for keeping our community safe. Our moderation team is reviewing this incident.
@@ -83,7 +83,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
             className="space-y-4"
           >
             <p className="text-xs text-slate-600 leading-relaxed">
-              Reporting: <strong className="text-slate-900">{targetName}</strong>. SocialConnect has a strict zero-tolerance policy against dating behavior, harassment, and unsafe private meeting locations.
+              Reporting: <strong className="text-slate-900">{targetName}</strong>. MELO has a strict zero-tolerance policy against dating behavior, harassment, and unsafe private meeting locations.
             </p>
 
             {errorMsg && (
@@ -100,7 +100,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
               <select
                 value={reason}
                 onChange={(e) => setReason(e.target.value as any)}
-                className="w-full rounded-xl border border-slate-300 p-2.5 text-xs focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-xl border border-slate-300 p-2.5 text-xs focus:border-[#7137A8] focus:outline-none focus:ring-2 focus:ring-[#7137A8]/20"
               >
                 <option value="DATING_ATTEMPT">Dating / Romantic solicitation (Not allowed)</option>
                 <option value="INAPPROPRIATE_BEHAVIOR">Inappropriate or abusive behavior</option>
@@ -121,7 +121,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Describe what happened so moderators can take appropriate action..."
-                className="w-full rounded-xl border border-slate-300 p-3 text-xs focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-xl border border-slate-300 p-3 text-xs focus:border-[#7137A8] focus:outline-none focus:ring-2 focus:ring-[#7137A8]/20"
               />
             </div>
 

@@ -253,15 +253,15 @@ export const RegisterPage: React.FC = () => {
       <div className="max-w-md mx-auto py-8">
         <div className="rounded-3xl border border-slate-200/90 bg-white p-8 shadow-soft space-y-6">
           <div className="text-center space-y-2">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-emerald-100 to-teal-50 text-emerald-600 shadow-sm">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#F1EAF8] to-[#FFF1E3] text-[#7137A8] shadow-sm border border-[#7137A8]/20">
               <KeyRound className="h-7 w-7" />
             </div>
-            <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-2xl font-extrabold text-[#26232B] tracking-tight">
               Verify Your Email
             </h1>
-            <p className="text-xs text-slate-500 leading-relaxed">
+            <p className="text-xs text-[#55545C] leading-relaxed">
               We sent a 6-digit confirmation code to{' '}
-              <span className="font-bold text-slate-800">{registeredEmail}</span>.
+              <span className="font-bold text-[#26232B]">{registeredEmail}</span>.
               Enter it below to verify your inbox.
             </p>
           </div>
@@ -292,11 +292,11 @@ export const RegisterPage: React.FC = () => {
           )}
 
           {/* Notice to check inbox */}
-          <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-3.5 text-xs text-emerald-900 flex items-start gap-2.5">
-            <Mail className="h-4 w-4 shrink-0 mt-0.5 text-emerald-600" />
+          <div className="rounded-2xl border border-[#7137A8]/20 bg-[#F1EAF8]/70 p-3.5 text-xs text-[#321044] flex items-start gap-2.5">
+            <Mail className="h-4 w-4 shrink-0 mt-0.5 text-[#7137A8]" />
             <div>
-              <p className="font-semibold">Check your email inbox or spam folder</p>
-              <p className="text-[11px] text-emerald-700 mt-0.5">
+              <p className="font-semibold text-[#321044]">Check your email inbox or spam folder</p>
+              <p className="text-[11px] text-[#55545C] mt-0.5">
                 We've sent an email containing your 6-digit confirmation code. If the email doesn't exist or is unreachable, the code will not arrive.
               </p>
             </div>
@@ -310,8 +310,8 @@ export const RegisterPage: React.FC = () => {
           )}
 
           {resendMessage && (
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-800 flex items-center gap-2">
-              <Check className="h-4 w-4 text-emerald-600 shrink-0" />
+            <div className="rounded-2xl border border-[#7137A8]/30 bg-[#F1EAF8] p-3 text-xs text-[#7137A8] flex items-center gap-2">
+              <Check className="h-4 w-4 text-[#7137A8] shrink-0" />
               <span>{resendMessage}</span>
             </div>
           )}
@@ -332,7 +332,7 @@ export const RegisterPage: React.FC = () => {
                     value={digit}
                     onChange={(e) => handleOtpChange(idx, e.target.value)}
                     onKeyDown={(e) => handleOtpKeyDown(idx, e)}
-                    className="h-12 w-11 rounded-xl border border-slate-300 bg-white text-center text-lg font-mono font-bold text-slate-900 shadow-sm focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-500/10 transition"
+                    className="h-12 w-11 rounded-xl border border-slate-300 bg-white text-center text-lg font-mono font-bold text-slate-900 shadow-sm focus:border-[#7137A8] focus:outline-none focus:ring-4 focus:ring-[#7137A8]/10 transition"
                   />
                 ))}
               </div>
@@ -341,7 +341,7 @@ export const RegisterPage: React.FC = () => {
             <button
               type="submit"
               disabled={isVerifyingOtp || otp.join('').length !== 6}
-              className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 py-3 text-sm font-bold text-white shadow-md shadow-emerald-600/25 hover:from-emerald-700 hover:to-teal-700 disabled:opacity-50 transition"
+              className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#7137A8] via-[#8541C5] to-[#9B51CA] py-3 text-sm font-bold text-white shadow-md shadow-[#7137A8]/25 hover:from-[#5F2D8E] hover:to-[#7137A8] disabled:opacity-50 transition"
             >
               {isVerifyingOtp ? (
                 <Loader2 className="h-5 w-5 animate-spin" />
@@ -360,7 +360,7 @@ export const RegisterPage: React.FC = () => {
               type="button"
               disabled={resendCooldown > 0 || isResending}
               onClick={handleResendOtp}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 disabled:text-slate-400 transition"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#7137A8] hover:text-[#5F2D8E] disabled:text-slate-400 transition"
             >
               <RotateCw className={`h-3.5 w-3.5 ${isResending ? 'animate-spin' : ''}`} />
               {resendCooldown > 0
@@ -390,11 +390,11 @@ export const RegisterPage: React.FC = () => {
     <div className="max-w-md mx-auto py-8">
       <div className="rounded-3xl border border-slate-200/90 bg-white p-8 shadow-soft space-y-6">
         <div className="text-center space-y-2">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-emerald-100 to-teal-50 text-emerald-600 shadow-sm">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#F1EAF8] to-[#FFF1E3] text-[#7137A8] shadow-sm border border-[#7137A8]/20">
             <Users className="h-7 w-7" />
           </div>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Create an Account</h1>
-          <p className="text-xs text-slate-500">
+          <h1 className="text-2xl font-extrabold text-[#26232B] tracking-tight">Create an Account</h1>
+          <p className="text-xs text-[#55545C]">
             Join the community to find real-world companions for shared experiences.
           </p>
         </div>
@@ -418,13 +418,13 @@ export const RegisterPage: React.FC = () => {
 
               {isCheckingEmail && (
                 <span className="text-[10px] text-slate-400 flex items-center gap-1">
-                  <Loader2 className="h-2.5 w-2.5 animate-spin text-emerald-600" />
+                  <Loader2 className="h-2.5 w-2.5 animate-spin text-[#7137A8]" />
                   Checking...
                 </span>
               )}
 
               {!isCheckingEmail && emailCheckResult?.is_valid && emailCheckResult.is_available && (
-                <span className="text-[11px] font-semibold text-emerald-600 flex items-center gap-1">
+                <span className="text-[11px] font-semibold text-[#7137A8] flex items-center gap-1">
                   <CheckCircle2 className="h-3 w-3" /> Valid email
                 </span>
               )}
@@ -445,7 +445,7 @@ export const RegisterPage: React.FC = () => {
                 className={`w-full rounded-xl border bg-white pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-4 transition ${
                   errors.email || (emailCheckResult && (!emailCheckResult.is_valid || !emailCheckResult.is_available))
                     ? 'border-red-300 focus:border-red-500 focus:ring-red-500/10'
-                    : 'border-slate-300 focus:border-emerald-500 focus:ring-emerald-500/10'
+                    : 'border-slate-300 focus:border-[#7137A8] focus:ring-[#7137A8]/10'
                 }`}
               />
             </div>
@@ -493,7 +493,7 @@ export const RegisterPage: React.FC = () => {
                 className={`w-full rounded-xl border bg-white pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-4 transition ${
                   errors.password
                     ? 'border-red-300 focus:border-red-500 focus:ring-red-500/10'
-                    : 'border-slate-300 focus:border-emerald-500 focus:ring-emerald-500/10'
+                    : 'border-slate-300 focus:border-[#7137A8] focus:ring-[#7137A8]/10'
                 }`}
               />
             </div>
@@ -515,7 +515,7 @@ export const RegisterPage: React.FC = () => {
                 className={`w-full rounded-xl border bg-white pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-4 transition ${
                   errors.confirmPassword
                     ? 'border-red-300 focus:border-red-500 focus:ring-red-500/10'
-                    : 'border-slate-300 focus:border-emerald-500 focus:ring-emerald-500/10'
+                    : 'border-slate-300 focus:border-[#7137A8] focus:ring-[#7137A8]/10'
                 }`}
               />
             </div>
@@ -530,7 +530,7 @@ export const RegisterPage: React.FC = () => {
               isSubmitting ||
               (emailCheckResult ? (!emailCheckResult.is_valid || !emailCheckResult.is_available) : false)
             }
-            className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 py-3 text-sm font-bold text-white shadow-md shadow-emerald-600/25 hover:from-emerald-700 hover:to-teal-700 disabled:opacity-50 transition"
+            className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#7137A8] via-[#8541C5] to-[#9B51CA] py-3.5 text-sm font-bold text-white shadow-md shadow-[#7137A8]/25 hover:from-[#5F2D8E] hover:to-[#7137A8] disabled:opacity-50 transition"
           >
             {isSubmitting ? (
               <Loader2 className="h-5 w-5 animate-spin" />
@@ -545,13 +545,13 @@ export const RegisterPage: React.FC = () => {
 
         <div className="text-center text-xs text-slate-500">
           Already have an account?{' '}
-          <Link to="/login" className="font-bold text-emerald-700 hover:text-emerald-800">
+          <Link to="/login" className="font-bold text-[#7137A8] hover:text-[#5F2D8E]">
             Sign In
           </Link>
         </div>
 
-        <div className="rounded-2xl bg-slate-50 p-3.5 text-[11px] text-slate-500 flex items-center gap-2.5 border border-slate-100">
-          <ShieldCheck className="h-5 w-5 text-emerald-600 shrink-0" />
+        <div className="rounded-2xl bg-[#F1EAF8]/60 p-3.5 text-[11px] text-[#55545C] flex items-center gap-2.5 border border-[#7137A8]/15">
+          <ShieldCheck className="h-5 w-5 text-[#7137A8] shrink-0" />
           <span>
             Real-time MX verification, disposable domain blocking, and 6-digit OTP verification protect community integrity.
           </span>

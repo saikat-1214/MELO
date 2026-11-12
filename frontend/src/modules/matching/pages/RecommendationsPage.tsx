@@ -168,7 +168,7 @@ export const RecommendationsPage: React.FC = () => {
         <div className="rounded-3xl border border-slate-200/90 bg-white p-6 shadow-soft space-y-4">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <div className="flex items-center gap-2">
-              <Sliders className="h-4 w-4 text-emerald-600" />
+              <Sliders className="h-4 w-4 text-[#7137A8]" />
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900">
                 Custom Match Factor Weights
               </h3>
@@ -180,7 +180,7 @@ export const RecommendationsPage: React.FC = () => {
                 setLocationWeight(20);
                 setCategoryWeight(10);
               }}
-              className="text-[11px] font-semibold text-emerald-600 hover:underline"
+              className="text-[11px] font-semibold text-[#7137A8] hover:underline"
             >
               Reset to Defaults (40/30/20/10)
             </button>
@@ -194,7 +194,7 @@ export const RecommendationsPage: React.FC = () => {
             <div className="space-y-2">
               <div className="flex justify-between text-xs font-bold text-slate-700">
                 <span>Interests Overlap</span>
-                <span className="text-emerald-700">{interestWeight}%</span>
+                <span className="text-[#7137A8]">{interestWeight}%</span>
               </div>
               <input
                 type="range"
@@ -203,14 +203,14 @@ export const RecommendationsPage: React.FC = () => {
                 step="5"
                 value={interestWeight}
                 onChange={(e) => setInterestWeight(Number(e.target.value))}
-                className="w-full accent-emerald-600 cursor-pointer"
+                className="w-full accent-[#7137A8] cursor-pointer"
               />
             </div>
 
             <div className="space-y-2">
               <div className="flex justify-between text-xs font-bold text-slate-700">
                 <span>Schedule Overlap</span>
-                <span className="text-teal-700">{scheduleWeight}%</span>
+                <span className="text-[#9B51CA]">{scheduleWeight}%</span>
               </div>
               <input
                 type="range"
@@ -219,7 +219,7 @@ export const RecommendationsPage: React.FC = () => {
                 step="5"
                 value={scheduleWeight}
                 onChange={(e) => setScheduleWeight(Number(e.target.value))}
-                className="w-full accent-teal-600 cursor-pointer"
+                className="w-full accent-[#9B51CA] cursor-pointer"
               />
             </div>
 
@@ -274,21 +274,21 @@ export const RecommendationsPage: React.FC = () => {
               </p>
             </div>
           </div>
-          <span className="rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-bold text-emerald-800 border border-emerald-200">
+          <span className="rounded-full bg-[#F1EAF8] px-3 py-1 text-[11px] font-bold text-[#7137A8] border border-[#7137A8]/30">
             Active Version: {actRecData?.algorithm_version || 'v1.0-deterministic'}
           </span>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-          <div className="rounded-2xl bg-emerald-50/60 border border-emerald-100 p-3 space-y-1">
-            <span className="text-lg font-black text-emerald-700">{interestWeight}%</span>
-            <p className="text-[11px] font-bold text-emerald-900">Interest Overlap</p>
-            <p className="text-[10px] text-emerald-600">Jaccard common tags</p>
+          <div className="rounded-2xl bg-[#F1EAF8] border border-[#7137A8]/20 p-3 space-y-1">
+            <span className="text-lg font-black text-[#7137A8]">{interestWeight}%</span>
+            <p className="text-[11px] font-bold text-[#321044]">Interest Overlap</p>
+            <p className="text-[10px] text-[#7137A8]">Jaccard common tags</p>
           </div>
-          <div className="rounded-2xl bg-teal-50/60 border border-teal-100 p-3 space-y-1">
-            <span className="text-lg font-black text-teal-700">{scheduleWeight}%</span>
-            <p className="text-[11px] font-bold text-teal-900">Schedule Overlap</p>
-            <p className="text-[10px] text-teal-600">Mutual time slots</p>
+          <div className="rounded-2xl bg-[#F1EAF8]/60 border border-[#9B51CA]/20 p-3 space-y-1">
+            <span className="text-lg font-black text-[#9B51CA]">{scheduleWeight}%</span>
+            <p className="text-[11px] font-bold text-[#321044]">Schedule Overlap</p>
+            <p className="text-[10px] text-[#9B51CA]">Mutual time slots</p>
           </div>
           <div className="rounded-2xl bg-indigo-50/60 border border-indigo-100 p-3 space-y-1">
             <span className="text-lg font-black text-indigo-700">{locationWeight}%</span>
@@ -327,7 +327,7 @@ export const RecommendationsPage: React.FC = () => {
       {activeTab === 'activities' ? (
         isActLoading ? (
           <div className="flex justify-center py-20">
-            <Loader2 className="h-8 w-8 text-emerald-600 animate-spin" />
+            <Loader2 className="h-8 w-8 text-[#7137A8] animate-spin" />
           </div>
         ) : activityItems.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -344,7 +344,7 @@ export const RecommendationsPage: React.FC = () => {
                       <span className="rounded-xl bg-slate-100 px-3 py-1 text-xs font-bold text-slate-800">
                         {item.activity.category.icon} {item.activity.category.name}
                       </span>
-                      <div className="flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-extrabold text-emerald-800">
+                      <div className="flex items-center gap-1.5 rounded-full bg-[#F1EAF8] border border-[#7137A8]/30 px-3 py-1 text-xs font-extrabold text-[#7137A8]">
                         <Sparkles className="h-3.5 w-3.5 text-amber-500" />
                         <span>{adjustedScore}% Match</span>
                       </div>
@@ -358,7 +358,7 @@ export const RecommendationsPage: React.FC = () => {
                     </p>
 
                     <div className="rounded-xl bg-slate-50 border border-slate-100 p-2.5 text-xs text-slate-700 flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-emerald-600 shrink-0" />
+                      <MapPin className="h-4 w-4 text-[#7137A8] shrink-0" />
                       <span className="font-semibold text-slate-900">{item.activity.city}:</span>
                       <span className="truncate text-slate-600">{item.activity.location_landmark}</span>
                     </div>
@@ -376,7 +376,7 @@ export const RecommendationsPage: React.FC = () => {
                           </div>
                           <div className="h-1.5 w-full rounded-full bg-slate-200">
                             <div
-                              className="h-full bg-emerald-500 rounded-full"
+                              className="h-full bg-[#7137A8] rounded-full"
                               style={{ width: `${item.breakdown.interest_score * 100}%` }}
                             />
                           </div>
@@ -389,7 +389,7 @@ export const RecommendationsPage: React.FC = () => {
                           </div>
                           <div className="h-1.5 w-full rounded-full bg-slate-200">
                             <div
-                              className="h-full bg-teal-500 rounded-full"
+                              className="h-full bg-[#9B51CA] rounded-full"
                               style={{ width: `${item.breakdown.schedule_score * 100}%` }}
                             />
                           </div>
@@ -427,8 +427,8 @@ export const RecommendationsPage: React.FC = () => {
                     {item.explanations.length > 0 && (
                       <div className="space-y-1">
                         {item.explanations.map((exp, idx) => (
-                          <div key={idx} className="flex items-center gap-1.5 text-[11px] text-emerald-800 font-medium">
-                            <CheckCircle2 className="h-3 w-3 text-emerald-600 shrink-0" />
+                          <div key={idx} className="flex items-center gap-1.5 text-[11px] text-[#7137A8] font-medium">
+                            <CheckCircle2 className="h-3 w-3 text-[#7137A8] shrink-0" />
                             <span>{exp}</span>
                           </div>
                         ))}
@@ -442,7 +442,7 @@ export const RecommendationsPage: React.FC = () => {
                     </span>
                     <Link
                       to={`/activities/${item.activity.id}`}
-                      className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-600 transition"
+                      className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white hover:bg-[#7137A8] transition"
                     >
                       <span>View Outing</span>
                       <ArrowRight className="h-3.5 w-3.5" />
@@ -454,7 +454,7 @@ export const RecommendationsPage: React.FC = () => {
           </div>
         ) : (
           <div className="rounded-3xl border border-slate-200/80 bg-white p-12 text-center shadow-soft space-y-4">
-            <Compass className="h-12 w-12 text-emerald-600 mx-auto" />
+            <Compass className="h-12 w-12 text-[#7137A8] mx-auto" />
             <h3 className="text-lg font-bold text-slate-900">No Matched Outings Yet</h3>
             <p className="text-xs text-slate-500 max-w-md mx-auto">
               As more activities are created across different categories, our AI service will continuously rank the ones that best fit your profile.
@@ -471,7 +471,7 @@ export const RecommendationsPage: React.FC = () => {
         /* Peers Tab */
         isPeerLoading ? (
           <div className="flex justify-center py-20">
-            <Loader2 className="h-8 w-8 text-emerald-600 animate-spin" />
+            <Loader2 className="h-8 w-8 text-[#7137A8] animate-spin" />
           </div>
         ) : peerItems.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -485,7 +485,7 @@ export const RecommendationsPage: React.FC = () => {
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-base font-bold text-white shadow-sm">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#7137A8] to-[#9B51CA] text-base font-bold text-white shadow-sm">
                           {peer.display_name.charAt(0).toUpperCase()}
                         </div>
                         <div>
@@ -496,7 +496,7 @@ export const RecommendationsPage: React.FC = () => {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-extrabold text-emerald-800">
+                      <div className="flex items-center gap-1 rounded-full bg-[#F1EAF8] border border-[#7137A8]/30 px-3 py-1 text-xs font-extrabold text-[#7137A8]">
                         <Sparkles className="h-3.5 w-3.5 text-amber-500" />
                         <span>{adjustedScore}% Match</span>
                       </div>
@@ -515,7 +515,7 @@ export const RecommendationsPage: React.FC = () => {
                           {peer.shared_interests.map((interest, idx) => (
                             <span
                               key={idx}
-                              className="rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200/60 px-2 py-0.5 text-[10px] font-bold"
+                              className="rounded-lg bg-[#F1EAF8] text-[#7137A8] border border-[#7137A8]/20 px-2 py-0.5 text-[10px] font-bold"
                             >
                               {interest}
                             </span>
@@ -537,7 +537,7 @@ export const RecommendationsPage: React.FC = () => {
                           </div>
                           <div className="h-1.5 w-full rounded-full bg-slate-200">
                             <div
-                              className="h-full bg-emerald-500 rounded-full"
+                              className="h-full bg-[#7137A8] rounded-full"
                               style={{ width: `${peer.breakdown.interest_score * 100}%` }}
                             />
                           </div>
@@ -550,7 +550,7 @@ export const RecommendationsPage: React.FC = () => {
                           </div>
                           <div className="h-1.5 w-full rounded-full bg-slate-200">
                             <div
-                              className="h-full bg-teal-500 rounded-full"
+                              className="h-full bg-[#9B51CA] rounded-full"
                               style={{ width: `${peer.breakdown.schedule_score * 100}%` }}
                             />
                           </div>
@@ -588,8 +588,8 @@ export const RecommendationsPage: React.FC = () => {
                     {peer.explanations.length > 0 && (
                       <div className="space-y-1">
                         {peer.explanations.map((exp, idx) => (
-                          <div key={idx} className="flex items-center gap-1.5 text-[11px] text-emerald-800 font-medium">
-                            <CheckCircle2 className="h-3 w-3 text-emerald-600 shrink-0" />
+                          <div key={idx} className="flex items-center gap-1.5 text-[11px] text-[#7137A8] font-medium">
+                            <CheckCircle2 className="h-3 w-3 text-[#7137A8] shrink-0" />
                             <span>{exp}</span>
                           </div>
                         ))}
@@ -603,7 +603,7 @@ export const RecommendationsPage: React.FC = () => {
                     </span>
                     <Link
                       to="/"
-                      className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-600 transition"
+                      className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white hover:bg-[#7137A8] transition"
                     >
                       <span>Find Outings Together</span>
                       <ArrowRight className="h-3.5 w-3.5" />
@@ -615,7 +615,7 @@ export const RecommendationsPage: React.FC = () => {
           </div>
         ) : (
           <div className="rounded-3xl border border-slate-200/80 bg-white p-12 text-center shadow-soft space-y-4">
-            <Users className="h-12 w-12 text-emerald-600 mx-auto" />
+            <Users className="h-12 w-12 text-[#7137A8] mx-auto" />
             <h3 className="text-lg font-bold text-slate-900">No Matched Companions Yet</h3>
             <p className="text-xs text-slate-500 max-w-md mx-auto">
               Our AI engine matches companions when mutual interests and weekly availability align. Update your profile availability slots to see more matches!

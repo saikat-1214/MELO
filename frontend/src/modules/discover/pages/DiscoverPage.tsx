@@ -181,11 +181,11 @@ export const DiscoverPage: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <div className="flex items-center gap-6 text-slate-600">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" />
+              <ShieldCheck className="h-4 w-4 text-[#7137A8]" />
               <span className="font-semibold text-slate-900">Public Meeting Landmarks Only</span>
             </div>
             <div className="flex items-center gap-2">
-              <HeartHandshake className="h-4 w-4 text-emerald-600" />
+              <HeartHandshake className="h-4 w-4 text-[#7137A8]" />
               <span className="font-semibold text-slate-900">Host Vetting &amp; Approvals</span>
             </div>
           </div>
@@ -198,8 +198,8 @@ export const DiscoverPage: React.FC = () => {
               {isHealthLoading ? (
                 <span className="text-slate-400">checking...</span>
               ) : health?.status === 'healthy' ? (
-                <span className="text-emerald-700 font-bold flex items-center gap-1">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" /> Online
+                <span className="text-[#7137A8] font-bold flex items-center gap-1">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-[#7137A8]" /> Online
                 </span>
               ) : (
                 <span className="text-amber-700 font-bold flex items-center gap-1">
@@ -214,8 +214,8 @@ export const DiscoverPage: React.FC = () => {
               {isHealthLoading ? (
                 <span className="text-slate-400">checking...</span>
               ) : health?.database?.connected ? (
-                <span className="text-emerald-700 font-bold flex items-center gap-1">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" /> PostgreSQL ({health.database.latency_ms}ms)
+                <span className="text-[#7137A8] font-bold flex items-center gap-1">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-[#7137A8]" /> PostgreSQL ({health.database.latency_ms}ms)
                 </span>
               ) : (
                 <span className="text-amber-700 font-semibold flex items-center gap-1">
@@ -329,7 +329,7 @@ export const DiscoverPage: React.FC = () => {
                           act.viewer_status === 'HOST'
                             ? 'bg-purple-100 text-purple-800'
                             : act.viewer_status === 'MEMBER'
-                            ? 'bg-emerald-100 text-emerald-800'
+                            ? 'bg-[#F1EAF8] text-[#7137A8]'
                             : 'bg-amber-100 text-amber-800'
                         }`}
                       >
@@ -425,8 +425,8 @@ export const DiscoverPage: React.FC = () => {
           /* Contextual Empty State */
           <div className="rounded-3xl border border-slate-200/90 bg-white p-8 sm:p-14 text-center shadow-soft">
             <div className="max-w-xl mx-auto space-y-5">
-              <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-tr from-emerald-100 to-teal-50 text-emerald-600 shadow-inner">
-                <Compass className="h-10 w-10 text-emerald-600" />
+              <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-tr from-[#F1EAF8] to-[#FFF1E3] text-[#7137A8] shadow-inner">
+                <Compass className="h-10 w-10 text-[#7137A8]" />
                 <div className="absolute -top-1 -right-1 h-6 w-6 rounded-full bg-amber-400 text-white flex items-center justify-center text-xs font-bold shadow">
                   +
                 </div>
@@ -453,7 +453,7 @@ export const DiscoverPage: React.FC = () => {
                   to="/recommendations"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white px-6 py-3 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition"
                 >
-                  <Sparkles className="h-4 w-4 text-emerald-600" />
+                  <Sparkles className="h-4 w-4 text-[#7137A8]" />
                   Explore AI Matches
                 </Link>
               </div>

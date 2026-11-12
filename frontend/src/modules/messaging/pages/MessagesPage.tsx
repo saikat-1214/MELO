@@ -154,7 +154,7 @@ export const MessagesPage: React.FC = () => {
   return (
     <div className="space-y-6 pb-12">
       <div className="border-b border-slate-200/80 pb-4">
-        <div className="flex items-center gap-2 text-emerald-600 text-xs font-bold uppercase tracking-wider mb-1">
+        <div className="flex items-center gap-2 text-[#7137A8] text-xs font-bold uppercase tracking-wider mb-1">
           <MessageSquare className="h-4 w-4" />
           Real-Time Coordination
         </div>
@@ -177,7 +177,7 @@ export const MessagesPage: React.FC = () => {
           <div className="flex-1 overflow-y-auto divide-y divide-slate-100">
             {isConvLoading ? (
               <div className="p-8 text-center">
-                <Loader2 className="mx-auto h-6 w-6 text-emerald-600 animate-spin" />
+                <Loader2 className="mx-auto h-6 w-6 text-[#7137A8] animate-spin" />
               </div>
             ) : !conversations || conversations.length === 0 ? (
               <div className="p-8 text-center space-y-2">
@@ -207,7 +207,7 @@ export const MessagesPage: React.FC = () => {
                     }}
                     className={`w-full text-left p-4 transition flex flex-col gap-1 ${
                       isSelected
-                        ? 'bg-white border-l-4 border-emerald-600 shadow-sm'
+                        ? 'bg-white border-l-4 border-[#7137A8] shadow-sm'
                         : 'hover:bg-slate-100/70'
                     }`}
                   >
@@ -261,7 +261,7 @@ export const MessagesPage: React.FC = () => {
               <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 bg-slate-50/30">
                 {isMessagesLoading ? (
                   <div className="flex justify-center py-12">
-                    <Loader2 className="h-6 w-6 text-emerald-600 animate-spin" />
+                    <Loader2 className="h-6 w-6 text-[#7137A8] animate-spin" />
                   </div>
                 ) : !messages || messages.length === 0 ? (
                   <div className="py-16 text-center space-y-2">
@@ -297,19 +297,19 @@ export const MessagesPage: React.FC = () => {
                         <div
                           className={`max-w-[75%] rounded-2xl px-4 py-2.5 shadow-sm text-xs leading-relaxed ${
                             isMe
-                              ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-br-xs'
+                              ? 'bg-gradient-to-r from-[#7137A8] to-[#9B51CA] text-white rounded-br-xs'
                               : 'bg-white border border-slate-200 text-slate-900 rounded-bl-xs'
                           }`}
                         >
                           {!isMe && (
-                            <p className="text-[10px] font-bold text-emerald-700 mb-0.5">
+                            <p className="text-[10px] font-bold text-[#7137A8] mb-0.5">
                               {m.sender_name}
                             </p>
                           )}
                           <p className="whitespace-pre-wrap">{m.content}</p>
                           <span
                             className={`text-[9px] mt-1 block text-right ${
-                              isMe ? 'text-emerald-100' : 'text-slate-400'
+                              isMe ? 'text-[#F1EAF8]' : 'text-slate-400'
                             }`}
                           >
                             {new Date(m.created_at).toLocaleTimeString(undefined, {
@@ -339,12 +339,12 @@ export const MessagesPage: React.FC = () => {
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
                     placeholder="Type a message to confirmed attendees (Enter to send)..."
-                    className="flex-1 rounded-2xl border border-slate-300 px-4 py-2.5 text-xs placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition"
+                    className="flex-1 rounded-2xl border border-slate-300 px-4 py-2.5 text-xs placeholder:text-slate-400 focus:border-[#7137A8] focus:outline-none focus:ring-2 focus:ring-[#7137A8]/20 transition"
                   />
                   <button
                     type="submit"
                     disabled={sendMutation.isPending || !inputText.trim()}
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-md hover:bg-emerald-700 disabled:opacity-50 transition"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-[#7137A8] to-[#9B51CA] text-white shadow-md hover:from-[#5F2D8E] hover:to-[#7137A8] disabled:opacity-50 transition"
                   >
                     {sendMutation.isPending ? (
                       <Loader2 className="h-4 w-4 animate-spin" />
@@ -358,7 +358,7 @@ export const MessagesPage: React.FC = () => {
           ) : (
             /* Empty State */
             <div className="flex-1 flex flex-col items-center justify-center text-center max-w-md mx-auto p-6 sm:p-10 space-y-4">
-              <div className="h-16 w-16 rounded-3xl bg-emerald-50 text-emerald-600 flex items-center justify-center shadow-inner">
+              <div className="h-16 w-16 rounded-3xl bg-[#F1EAF8] text-[#7137A8] flex items-center justify-center shadow-inner">
                 <Users className="h-8 w-8" />
               </div>
               <div className="space-y-2">
@@ -366,16 +366,16 @@ export const MessagesPage: React.FC = () => {
                   Safe, Gated Group Discussions
                 </h3>
                 <p className="text-xs text-slate-500 leading-relaxed">
-                  To prevent spam and unwanted solicitations, SocialConnect group chats are unlocked only for approved members of active meetups.
+                  To prevent spam and unwanted solicitations, MELO group chats are unlocked only for approved members of active meetups.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4 text-xs text-emerald-900 text-left space-y-2">
-                <div className="flex items-center gap-2 font-bold text-emerald-950">
-                  <ShieldCheck className="h-4 w-4 text-emerald-600" />
+              <div className="rounded-2xl border border-[#7137A8]/20 bg-[#F1EAF8]/70 p-4 text-xs text-[#321044] text-left space-y-2">
+                <div className="flex items-center gap-2 font-bold text-[#321044]">
+                  <ShieldCheck className="h-4 w-4 text-[#7137A8]" />
                   Community Chat Standards:
                 </div>
-                <ul className="list-disc list-inside space-y-1 text-[11px] text-emerald-800">
+                <ul className="list-disc list-inside space-y-1 text-[11px] text-[#7137A8]">
                   <li>Coordinate logistics at the designated public landmark</li>
                   <li>No commercial selling or dating solicitations allowed</li>
                   <li>Respect all attendees' personal boundaries and privacy</li>

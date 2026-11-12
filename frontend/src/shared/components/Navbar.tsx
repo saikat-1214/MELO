@@ -102,7 +102,7 @@ export const Navbar: React.FC = () => {
   const getNotifIcon = (type: string) => {
     switch (type) {
       case 'REQUEST_ACCEPTED':
-        return <CheckCircle2 className="h-4 w-4 text-emerald-600" />;
+        return <CheckCircle2 className="h-4 w-4 text-[#7137A8]" />;
       case 'JOIN_REQUEST':
         return <Clock className="h-4 w-4 text-amber-600" />;
       case 'ACTIVITY_CANCELLED':

@@ -49,7 +49,7 @@ export const MyActivitiesPage: React.FC = () => {
         </div>
         <Link
           to="/activities/create"
-          className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-md shadow-emerald-600/20 hover:from-emerald-700 hover:to-teal-700 transition"
+          className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#7137A8] via-[#8541C5] to-[#9B51CA] px-4 py-2.5 text-xs font-bold text-white shadow-md shadow-[#7137A8]/20 hover:from-[#5F2D8E] hover:to-[#7137A8] transition"
         >
           <PlusCircle className="h-4 w-4" />
           Host New Activity
@@ -62,7 +62,7 @@ export const MyActivitiesPage: React.FC = () => {
           onClick={() => setActiveTab('hosting')}
           className={`pb-3 px-3 text-xs font-bold border-b-2 transition ${
             activeTab === 'hosting'
-              ? 'border-emerald-600 text-emerald-700'
+              ? 'border-[#7137A8] text-[#7137A8]'
               : 'border-transparent text-slate-500 hover:text-slate-800'
           }`}
         >
@@ -72,7 +72,7 @@ export const MyActivitiesPage: React.FC = () => {
           onClick={() => setActiveTab('joined')}
           className={`pb-3 px-3 text-xs font-bold border-b-2 transition ${
             activeTab === 'joined'
-              ? 'border-emerald-600 text-emerald-700'
+              ? 'border-[#7137A8] text-[#7137A8]'
               : 'border-transparent text-slate-500 hover:text-slate-800'
           }`}
         >
@@ -82,7 +82,7 @@ export const MyActivitiesPage: React.FC = () => {
           onClick={() => setActiveTab('requests')}
           className={`pb-3 px-3 text-xs font-bold border-b-2 transition ${
             activeTab === 'requests'
-              ? 'border-emerald-600 text-emerald-700'
+              ? 'border-[#7137A8] text-[#7137A8]'
               : 'border-transparent text-slate-500 hover:text-slate-800'
           }`}
         >
@@ -93,7 +93,7 @@ export const MyActivitiesPage: React.FC = () => {
       {/* Content */}
       {isLoading ? (
         <div className="flex flex-col items-center justify-center py-20 space-y-3">
-          <Loader2 className="h-8 w-8 text-emerald-600 animate-spin" />
+          <Loader2 className="h-8 w-8 text-[#7137A8] animate-spin" />
           <p className="text-xs text-slate-500 font-medium">Loading your activities...</p>
         </div>
       ) : activeTab === 'hosting' ? (
@@ -112,7 +112,7 @@ export const MyActivitiesPage: React.FC = () => {
                     <span
                       className={`rounded-lg px-2.5 py-0.5 text-[10px] font-bold ${
                         act.status === 'PUBLISHED'
-                          ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                          ? 'bg-[#F1EAF8] text-[#7137A8] border border-[#7137A8]/30'
                           : act.status === 'FULL'
                           ? 'bg-amber-50 text-amber-700 border border-amber-200'
                           : 'bg-rose-50 text-rose-700 border border-rose-200'
@@ -126,7 +126,7 @@ export const MyActivitiesPage: React.FC = () => {
                   <p className="text-xs text-slate-500 line-clamp-2">{act.description}</p>
 
                   <div className="rounded-xl bg-slate-50 border border-slate-100 p-2.5 text-xs text-slate-700 flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-emerald-600 shrink-0" />
+                    <MapPin className="h-4 w-4 text-[#7137A8] shrink-0" />
                     <span className="font-semibold text-slate-900">{act.city}:</span>
                     <span className="truncate text-slate-600">{act.location_landmark}</span>
                   </div>
@@ -143,12 +143,12 @@ export const MyActivitiesPage: React.FC = () => {
                 </div>
 
                 <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                  <span className="rounded-md bg-emerald-50 px-2 py-1 text-[11px] font-bold text-emerald-700">
+                  <span className="rounded-md bg-[#F1EAF8] px-2 py-1 text-[11px] font-bold text-[#7137A8]">
                     Host Controls
                   </span>
                   <Link
                     to={`/activities/${act.id}`}
-                    className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-600 transition"
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white hover:bg-[#7137A8] transition"
                   >
                     <span>Manage &amp; Review</span>
                     <ArrowRight className="h-3.5 w-3.5" />
@@ -159,7 +159,7 @@ export const MyActivitiesPage: React.FC = () => {
           </div>
         ) : (
           <div className="rounded-3xl border border-slate-200/80 bg-white p-8 sm:p-14 text-center shadow-soft space-y-5">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F1EAF8] text-[#7137A8]">
               <Calendar className="h-8 w-8" />
             </div>
             <div className="max-w-md mx-auto space-y-2">
@@ -192,7 +192,7 @@ export const MyActivitiesPage: React.FC = () => {
                     <span className="rounded-xl bg-slate-100 px-3 py-1 text-xs font-bold text-slate-800">
                       {act.category.icon} {act.category.name}
                     </span>
-                    <span className="rounded-full bg-teal-50 px-2.5 py-0.5 text-[10px] font-bold text-teal-800 border border-teal-200">
+                    <span className="rounded-full bg-[#F1EAF8] px-2.5 py-0.5 text-[10px] font-bold text-[#7137A8] border border-[#7137A8]/30">
                       Confirmed Companion
                     </span>
                   </div>
@@ -201,7 +201,7 @@ export const MyActivitiesPage: React.FC = () => {
                   <p className="text-xs text-slate-500 line-clamp-2">{act.description}</p>
 
                   <div className="rounded-xl bg-slate-50 border border-slate-100 p-2.5 text-xs text-slate-700 flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-emerald-600 shrink-0" />
+                    <MapPin className="h-4 w-4 text-[#7137A8] shrink-0" />
                     <span className="font-semibold text-slate-900">{act.city}:</span>
                     <span className="truncate text-slate-600">{act.location_landmark}</span>
                   </div>
@@ -220,7 +220,7 @@ export const MyActivitiesPage: React.FC = () => {
                 <div className="pt-3 border-t border-slate-100 flex items-center justify-end">
                   <Link
                     to={`/activities/${act.id}`}
-                    className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-600 transition"
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white hover:bg-[#7137A8] transition"
                   >
                     <span>View Outing</span>
                     <ArrowRight className="h-3.5 w-3.5" />
@@ -231,7 +231,7 @@ export const MyActivitiesPage: React.FC = () => {
           </div>
         ) : (
           <div className="rounded-3xl border border-slate-200/80 bg-white p-8 sm:p-14 text-center shadow-soft space-y-5">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-50 text-teal-600">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F1EAF8] text-[#7137A8]">
               <Users className="h-8 w-8" />
             </div>
             <div className="max-w-md mx-auto space-y-2">
@@ -270,7 +270,7 @@ export const MyActivitiesPage: React.FC = () => {
                         req.status === 'PENDING'
                           ? 'bg-amber-100 text-amber-800'
                           : req.status === 'ACCEPTED'
-                          ? 'bg-emerald-100 text-emerald-800'
+                          ? 'bg-[#F1EAF8] text-[#7137A8]'
                           : 'bg-rose-100 text-rose-800'
                       }`}
                     >
