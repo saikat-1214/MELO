@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.dependencies import get_db, get_current_user
 from app.modules.users.models import User
@@ -8,10 +8,23 @@ from app.modules.authentication.schemas import (
     TokenRefreshRequest,
     TokenResponse,
     UserMeResponse,
+    EmailCheckResponse,
+    VerifyOtpRequest,
+    ResendOtpRequest,
+    VerifyOtpResponse,
 )
 from app.modules.authentication.service import auth_service
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
+
+
+@router.get("/check-email", response_model=EmailCheckResponse)
+async def check_email_availability(
+    email: str = Query(..., description="Email address to validate for deliverability and availability"),
+    db: AsyncSession = Depends(get_db),
+):
+    """Pre-flight check for email MX deliverability, syntax, disposable domains, and duplicate registration."""
+    return await auth_service.check_email(db, email)
 
 
 @router.post("/register", response_model=TokenResponse, status_code=status.HTTP_201_CREATED)
@@ -19,8 +32,26 @@ async def register(
     req: UserRegisterRequest,
     db: AsyncSession = Depends(get_db),
 ):
-    """Registers a new user account with hashed password and returns initial JWT tokens."""
+    """Registers a new user account, sends a 6-digit email OTP verification code, and returns session tokens."""
     return await auth_service.register(db, req)
+
+
+@router.post("/verify-otp", response_model=VerifyOtpResponse)
+async def verify_email_otp(
+    req: VerifyOtpRequest,
+    db: AsyncSession = Depends(get_db),
+):
+    """Verifies the 6-digit OTP code and marks the user's email as verified."""
+    return await auth_service.verify_email_otp(db, req)
+
+
+@router.post("/resend-otp")
+async def resend_email_otp(
+    req: ResendOtpRequest,
+    db: AsyncSession = Depends(get_db),
+):
+    """Resends a new 6-digit email verification code with rate-limit protection."""
+    return await auth_service.resend_verification_otp(db, req)
 
 
 @router.post("/login", response_model=TokenResponse)

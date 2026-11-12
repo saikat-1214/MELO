@@ -1,4 +1,5 @@
 from app.db.base import Base
+from app.modules.authentication.models import EmailVerificationCode
 from app.modules.users.models import User, UserProfile, UserAvailability
 from app.modules.interests.models import ActivityCategory, Interest, UserInterest
 from app.modules.activities.models import Activity, ActivityParticipant, JoinRequest
@@ -12,6 +13,7 @@ target_metadata = Base.metadata
 __all__ = [
     "Base",
     "target_metadata",
+    "EmailVerificationCode",
     "User",
     "UserProfile",
     "UserAvailability",
