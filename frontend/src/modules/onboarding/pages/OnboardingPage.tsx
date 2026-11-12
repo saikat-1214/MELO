@@ -39,6 +39,26 @@ const BLOCKED_TERMS = [
   'dick', 'whore', 'slut', 'pussy', 'nazi', 'hitler', 'shit', 'porn', 'sex', 'hookup'
 ];
 
+const MONTHS = [
+  { value: '01', label: 'Jan' },
+  { value: '02', label: 'Feb' },
+  { value: '03', label: 'Mar' },
+  { value: '04', label: 'Apr' },
+  { value: '05', label: 'May' },
+  { value: '06', label: 'Jun' },
+  { value: '07', label: 'Jul' },
+  { value: '08', label: 'Aug' },
+  { value: '09', label: 'Sep' },
+  { value: '10', label: 'Oct' },
+  { value: '11', label: 'Nov' },
+  { value: '12', label: 'Dec' },
+];
+
+const currentYear = new Date().getFullYear();
+const maxEligibleYear = currentYear - 18; // Must be at least 18
+const minEligibleYear = currentYear - 100;
+const YEARS = Array.from({ length: maxEligibleYear - minEligibleYear + 1 }, (_, i) => maxEligibleYear - i);
+
 const checkFriendlyName = (name: string): boolean => {
   if (!name.trim()) return true;
   const normalized = name.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -57,7 +77,35 @@ export const OnboardingPage: React.FC = () => {
   const [displayName, setDisplayName] = useState('');
   const [bio, setBio] = useState('');
   const [birthDate, setBirthDate] = useState('');
+  const [birthDay, setBirthDay] = useState('');
+  const [birthMonth, setBirthMonth] = useState('');
+  const [birthYear, setBirthYear] = useState('');
   const [gender, setGender] = useState('PREFER_NOT_TO_SAY');
+
+  const handleDateChange = (field: 'day' | 'month' | 'year', val: string) => {
+    const nextDay = field === 'day' ? val : birthDay;
+    const nextMonth = field === 'month' ? val : birthMonth;
+    const nextYear = field === 'year' ? val : birthYear;
+
+    if (field === 'day') setBirthDay(val);
+    if (field === 'month') setBirthMonth(val);
+    if (field === 'year') setBirthYear(val);
+
+    if (nextDay && nextMonth && nextYear) {
+      setBirthDate(`${nextYear}-${nextMonth}-${nextDay}`);
+    } else {
+      setBirthDate('');
+    }
+  };
+
+  const daysInCurrentMonth = React.useMemo(() => {
+    if (!birthMonth) return 31;
+    const y = birthYear ? parseInt(birthYear, 10) : 2000;
+    const m = parseInt(birthMonth, 10);
+    return new Date(y, m, 0).getDate();
+  }, [birthYear, birthMonth]);
+
+  const daysList = Array.from({ length: daysInCurrentMonth }, (_, i) => String(i + 1).padStart(2, '0'));
 
   // Step 2 State
   const [generalLocation, setGeneralLocation] = useState('');
@@ -283,22 +331,55 @@ export const OnboardingPage: React.FC = () => {
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
                   Date of Birth * (Must be 18+)
                 </label>
-                <input
-                  type="date"
-                  required
-                  value={birthDate}
-                  onChange={(e) => setBirthDate(e.target.value)}
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
-                />
+                <div className="grid grid-cols-3 gap-2">
+                  <select
+                    value={birthDay}
+                    onChange={(e) => handleDateChange('day', e.target.value)}
+                    className="w-full rounded-xl border border-slate-300 bg-white px-2 py-2 text-xs font-medium text-slate-800 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+                  >
+                    <option value="">Day</option>
+                    {daysList.map((d) => (
+                      <option key={d} value={d}>
+                        {parseInt(d, 10)}
+                      </option>
+                    ))}
+                  </select>
+
+                  <select
+                    value={birthMonth}
+                    onChange={(e) => handleDateChange('month', e.target.value)}
+                    className="w-full rounded-xl border border-slate-300 bg-white px-2 py-2 text-xs font-medium text-slate-800 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+                  >
+                    <option value="">Month</option>
+                    {MONTHS.map((m) => (
+                      <option key={m.value} value={m.value}>
+                        {m.label}
+                      </option>
+                    ))}
+                  </select>
+
+                  <select
+                    value={birthYear}
+                    onChange={(e) => handleDateChange('year', e.target.value)}
+                    className="w-full rounded-xl border border-slate-300 bg-white px-2 py-2 text-xs font-medium text-slate-800 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+                  >
+                    <option value="">Year</option>
+                    {YEARS.map((y) => (
+                      <option key={y} value={String(y)}>
+                        {y}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 {currentAge !== null && (
-                  <div className="mt-1 flex items-center gap-1.5 text-xs">
+                  <div className="mt-1.5 flex items-center gap-1.5 text-xs">
                     {currentAge >= 18 ? (
-                      <span className="text-emerald-700 font-medium flex items-center gap-1">
-                        <CheckCircle2 className="h-3.5 w-3.5" /> Age: {currentAge} (Eligible)
+                      <span className="text-emerald-700 font-semibold flex items-center gap-1">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" /> Age: {currentAge} (Eligible)
                       </span>
                     ) : (
-                      <span className="text-red-600 font-medium flex items-center gap-1">
-                        <AlertCircle className="h-3.5 w-3.5" /> Age: {currentAge} (Must be at least 18)
+                      <span className="text-rose-600 font-semibold flex items-center gap-1">
+                        <AlertCircle className="h-3.5 w-3.5 text-rose-500" /> Age: {currentAge} (Must be at least 18)
                       </span>
                     )}
                   </div>
