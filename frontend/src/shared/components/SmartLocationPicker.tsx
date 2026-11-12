@@ -4,7 +4,22 @@ import {
   searchStates,
   getDistrictsForState,
 } from '@/shared/data/locationData';
-import { MapPin, Search, ChevronDown, Check, AlertCircle } from 'lucide-react';
+import {
+  lookupIndianPin,
+  matchDistrict,
+  matchState,
+} from '@/shared/utils/pincodeValidator';
+import {
+  MapPin,
+  Search,
+  ChevronDown,
+  Check,
+  AlertCircle,
+  AlertTriangle,
+  CheckCircle2,
+  Loader2,
+  Wand2,
+} from 'lucide-react';
 
 export interface LocationDetails {
   country: string;
@@ -17,12 +32,14 @@ export interface LocationDetails {
 interface SmartLocationPickerProps {
   initialValue?: string;
   onChange: (formattedAddress: string, details: LocationDetails) => void;
+  onValidityChange?: (isValid: boolean, errorMessage?: string | null) => void;
   error?: string | null;
 }
 
 export const SmartLocationPicker: React.FC<SmartLocationPickerProps> = ({
   initialValue = '',
   onChange,
+  onValidityChange,
   error,
 }) => {
   const [country, setCountry] = useState('India');
@@ -38,6 +55,14 @@ export const SmartLocationPicker: React.FC<SmartLocationPickerProps> = ({
   // Filtered queries
   const [stateQuery, setStateQuery] = useState('');
   const [districtQuery, setDistrictQuery] = useState('');
+
+  // PIN Validation & Consistency State
+  const [isPinLoading, setIsPinLoading] = useState(false);
+  const [pinStatus, setPinStatus] = useState<'idle' | 'valid' | 'mismatch' | 'invalid'>('idle');
+  const [pinFeedback, setPinFeedback] = useState<string | null>(null);
+  const [suggestedDistrict, setSuggestedDistrict] = useState<string | null>(null);
+  const [suggestedState, setSuggestedState] = useState<string | null>(null);
+  const [localities, setLocalities] = useState<string[]>([]);
 
   const stateContainerRef = useRef<HTMLDivElement>(null);
   const districtContainerRef = useRef<HTMLDivElement>(null);
@@ -135,6 +160,107 @@ export const SmartLocationPicker: React.FC<SmartLocationPickerProps> = ({
     setShowDistrictMenu(false);
   };
 
+  // PIN Code Validation & Cross-Verification against Selected State & District
+  useEffect(() => {
+    if (country !== 'India' || pincode.length !== 6) {
+      setPinStatus('idle');
+      setPinFeedback(null);
+      setSuggestedDistrict(null);
+      setSuggestedState(null);
+      setLocalities([]);
+      onValidityChange?.(true, null);
+      return;
+    }
+
+    let isMounted = true;
+    setIsPinLoading(true);
+
+    const timer = setTimeout(async () => {
+      const allDistrictsInState = state ? getDistrictsForState(state) : [];
+      const res = await lookupIndianPin(pincode, allDistrictsInState);
+
+      if (!isMounted) return;
+      setIsPinLoading(false);
+
+      if (!res.isValid) {
+        setPinStatus('invalid');
+        const msg = res.errorMessage || `PIN ${pincode} does not exist in postal records.`;
+        setPinFeedback(msg);
+        setSuggestedDistrict(null);
+        setSuggestedState(null);
+        setLocalities([]);
+        onValidityChange?.(false, msg);
+        return;
+      }
+
+      setLocalities(res.postOffices);
+
+      const postalState = res.state;
+      const postalDistrict = res.district;
+      const canonDistrict = res.canonicalDistrict || postalDistrict;
+
+      // 1. Cross-check State mismatch
+      if (state && postalState && !matchState(state, postalState)) {
+        setPinStatus('mismatch');
+        const msg = `PIN ${pincode} is located in ${postalState}, not ${state}.`;
+        setPinFeedback(msg);
+        setSuggestedState(postalState);
+        setSuggestedDistrict(canonDistrict);
+        onValidityChange?.(false, msg);
+        return;
+      }
+
+      // 2. Cross-check District mismatch
+      if (district && postalDistrict && !matchDistrict(district, postalDistrict)) {
+        setPinStatus('mismatch');
+        const msg = `PIN ${pincode} belongs to ${canonDistrict} (${postalState || state}), not ${district}.`;
+        setPinFeedback(msg);
+        setSuggestedState(postalState);
+        setSuggestedDistrict(canonDistrict);
+        onValidityChange?.(false, msg);
+        return;
+      }
+
+      // 3. Both match or missing fields can be populated
+      setPinStatus('valid');
+      setPinFeedback(`Verified for ${district || canonDistrict}, ${state || postalState}`);
+      setSuggestedDistrict(null);
+      setSuggestedState(null);
+      onValidityChange?.(true, null);
+
+      // Auto-set state/district if not selected yet
+      if (!state && postalState) {
+        setState(postalState);
+        setStateQuery(postalState);
+      }
+      if (!district && canonDistrict) {
+        setDistrict(canonDistrict);
+        setDistrictQuery(canonDistrict);
+      }
+    }, 400);
+
+    return () => {
+      isMounted = false;
+      clearTimeout(timer);
+    };
+  }, [country, pincode, state, district]);
+
+  const handleAutoFixMismatch = () => {
+    if (suggestedState && suggestedState !== state) {
+      handleSelectState(suggestedState);
+    }
+    if (suggestedDistrict) {
+      handleSelectDistrict(suggestedDistrict);
+    }
+    setPinStatus('valid');
+    setPinFeedback(
+      `Updated and verified for ${suggestedDistrict || district}, ${suggestedState || state}`
+    );
+    setSuggestedDistrict(null);
+    setSuggestedState(null);
+    onValidityChange?.(true, null);
+  };
+
   return (
     <div className="space-y-4">
       {/* Country Selection */}
@@ -167,7 +293,7 @@ export const SmartLocationPicker: React.FC<SmartLocationPickerProps> = ({
           <div className="relative">
             <input
               type="text"
-              placeholder="Type state (e.g. A for Andhra/Arunachal...)"
+              placeholder="Type state (e.g. West Bengal, Delhi...)"
               value={stateQuery}
               onFocus={() => setShowStateMenu(true)}
               onChange={(e) => {
@@ -272,31 +398,84 @@ export const SmartLocationPicker: React.FC<SmartLocationPickerProps> = ({
           </label>
           <input
             type="text"
-            placeholder="e.g. Kharagpur, Midnapore, Salt Lake..."
+            placeholder="e.g. Sabang, Kharagpur, Salt Lake..."
             value={city}
             onChange={(e) => setCity(e.target.value)}
             className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-medium text-slate-800 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
           />
+
+          {/* Post Office / Locality Suggestions from PIN code */}
+          {localities.length > 0 && (
+            <div className="mt-1.5 flex items-center gap-1.5 flex-wrap">
+              <span className="text-[10px] text-slate-400 font-semibold">
+                Areas in {pincode}:
+              </span>
+              {localities.slice(0, 5).map((loc) => (
+                <button
+                  type="button"
+                  key={loc}
+                  onClick={() => setCity(loc)}
+                  className={`rounded-md px-1.5 py-0.5 text-[10px] font-medium transition ${
+                    city.trim().toLowerCase() === loc.toLowerCase()
+                      ? 'bg-brand-600 text-white font-bold'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  }`}
+                >
+                  {loc}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
-      {/* PIN Code */}
+      {/* PIN Code & Locality Preview */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
-          <label className="block text-xs font-semibold text-slate-700 mb-1">
-            PIN / Postal Code
-          </label>
-          <input
-            type="text"
-            maxLength={6}
-            placeholder="e.g. 721301"
-            value={pincode}
-            onChange={(e) => {
-              const cleaned = e.target.value.replace(/[^0-9]/g, '');
-              setPincode(cleaned);
-            }}
-            className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-mono text-slate-800 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
-          />
+          <div className="flex items-center justify-between mb-1">
+            <label className="text-xs font-semibold text-slate-700">
+              PIN / Postal Code
+            </label>
+            {isPinLoading && (
+              <span className="text-[10px] text-slate-400 flex items-center gap-1">
+                <Loader2 className="h-3 w-3 animate-spin text-brand-600" />
+                Verifying PIN...
+              </span>
+            )}
+          </div>
+          <div className="relative">
+            <input
+              type="text"
+              maxLength={6}
+              placeholder="e.g. 721144"
+              value={pincode}
+              onChange={(e) => {
+                const cleaned = e.target.value.replace(/[^0-9]/g, '');
+                setPincode(cleaned);
+              }}
+              className={`w-full rounded-xl border bg-white px-3.5 py-2 text-xs font-mono text-slate-800 focus:outline-none focus:ring-2 ${
+                pinStatus === 'mismatch' || pinStatus === 'invalid'
+                  ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-500/20 bg-rose-50/20'
+                  : pinStatus === 'valid'
+                  ? 'border-emerald-400 focus:border-emerald-500 focus:ring-emerald-500/20 bg-emerald-50/20'
+                  : 'border-slate-300 focus:border-brand-500 focus:ring-brand-500/20'
+              }`}
+            />
+            {pinStatus === 'valid' && (
+              <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-emerald-600" />
+            )}
+            {(pinStatus === 'mismatch' || pinStatus === 'invalid') && (
+              <AlertTriangle className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-rose-500" />
+            )}
+          </div>
+
+          {/* Verification Status Tag */}
+          {pinStatus === 'valid' && pinFeedback && (
+            <p className="text-[11px] font-medium text-emerald-700 mt-1 flex items-center gap-1">
+              <Check className="h-3 w-3 text-emerald-600 shrink-0" />
+              <span>{pinFeedback}</span>
+            </p>
+          )}
         </div>
 
         {/* Formatted Preview Badge */}
@@ -320,6 +499,41 @@ export const SmartLocationPicker: React.FC<SmartLocationPickerProps> = ({
           </div>
         </div>
       </div>
+
+      {/* PIN Mismatch Banner with One-Click Auto-Fix */}
+      {pinStatus === 'mismatch' && pinFeedback && (
+        <div className="rounded-xl border border-amber-300 bg-amber-50 p-3 text-xs text-amber-900 space-y-2 animate-in fade-in">
+          <div className="flex items-start gap-2">
+            <AlertTriangle className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="font-semibold">{pinFeedback}</p>
+              <p className="text-[11px] text-amber-700 mt-0.5">
+                PIN codes must match the selected district to ensure accurate companion radius discovery.
+              </p>
+            </div>
+          </div>
+          {suggestedDistrict && (
+            <div className="pt-0.5">
+              <button
+                type="button"
+                onClick={handleAutoFixMismatch}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-amber-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-amber-700 transition shadow-sm"
+              >
+                <Wand2 className="h-3.5 w-3.5" />
+                Auto-fix: Change District to {suggestedDistrict}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Invalid PIN Banner */}
+      {pinStatus === 'invalid' && pinFeedback && (
+        <div className="rounded-xl border border-rose-200 bg-rose-50 p-2.5 text-xs text-rose-800 flex items-center gap-2">
+          <AlertCircle className="h-4 w-4 text-rose-600 shrink-0" />
+          <span className="font-medium">{pinFeedback}</span>
+        </div>
+      )}
 
       {error && (
         <div className="flex items-center gap-1.5 text-xs text-rose-600 font-medium pt-1">

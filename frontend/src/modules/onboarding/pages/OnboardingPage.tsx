@@ -110,6 +110,7 @@ export const OnboardingPage: React.FC = () => {
 
   // Step 2 State
   const [generalLocation, setGeneralLocation] = useState('');
+  const [locationError, setLocationError] = useState<string | null>(null);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>(['English']);
 
   // Step 3 State: Interests
@@ -191,6 +192,10 @@ export const OnboardingPage: React.FC = () => {
     } else if (step === 2) {
       if (!generalLocation.trim()) {
         setErrorMsg('Please enter your general city or district name.');
+        return;
+      }
+      if (locationError) {
+        setErrorMsg(locationError);
         return;
       }
       const sensitive = ['flat', 'apartment', 'house', 'door no', 'street no', 'road no', 'lane'];
@@ -518,6 +523,7 @@ export const OnboardingPage: React.FC = () => {
             <SmartLocationPicker
               initialValue={generalLocation}
               onChange={(formatted) => setGeneralLocation(formatted)}
+              onValidityChange={(isValid, err) => setLocationError(isValid ? null : err || 'Location has validation errors')}
             />
 
             <div>
